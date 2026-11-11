@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Farida Decor - فريدة ديكور</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Amiri:wght@700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}body{background:#140E08;color:#fff;font-family:Cairo,sans-serif}
+header{background:#140E08;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #2a1e12}
+.logo-en{font-size:24px;font-weight:900}.logo-en span{color:#D4AF37}.logo-ar{font-size:16px;color:#D4AF37}.tagline{font-size:12px;color:#ccc}
+.socials{display:flex;gap:8px;align-items:center}.socials a{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;text-decoration:none;color:#fff;font-size:18px}
+.wa{background:#25D366}.fb{background:#1877F2}.ig{background:#E1306C}
+.btn{background:#D4AF37;color:#140E08;border:0;padding:10px 16px;border-radius:999px;font-weight:800;cursor:pointer}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:20px;padding:22px;align-items:center}
+.hero h1{font-size:56px;line-height:1}.hero h1 span{color:#D4AF37}.ruqaa{font-family:Amiri,serif;font-size:46px;color:#E6C65A;margin:10px 0}
+.hero p{color:#E8DCC8;line-height:1.9}.hero img{width:100%;height:420px;object-fit:cover;border-radius:14px}
+.pills{display:flex;gap:8px;flex-wrap:wrap;padding:0 18px 14px}.pills button{background:#2A1E12;color:#fff;border:1px solid #3a2c1c;padding:8px 14px;border-radius:999px;cursor:pointer}
+.pills button.active{background:#D4AF37;color:#140E08}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:0 18px 30px}
+.card{background:#1F160D;border:1px solid #2e2315;border-radius:14px;overflow:hidden}.card img{width:100%;height:220px;object-fit:cover}
+.card-b{padding:12px}.badge{display:inline-block;background:#D4AF37;color:#140E08;font-size:12px;font-weight:800;padding:3px 8px;border-radius:999px}
+.value{color:#E6C65A;font-style:italic;font-size:13px;margin:6px 0}.code{font-size:12px;color:#aaa}
+.cta{margin-top:10px;background:#25D366;color:#fff;border:0;width:100%;padding:11px;border-radius:10px;font-weight:800;cursor:pointer}
+footer{background:#0D0905;padding:24px 18px;display:grid;grid-template-columns:1fr 1fr;gap:20px;border-top:1px solid #2a1e12}
+footer h3{color:#D4AF37;margin-bottom:8px}footer div{color:#ddd;line-height:2;font-size:14px}
+@media(max-width:768px){header{padding:8px 12px}.tagline{display:none}.hero{grid-template-columns:1fr;padding:12px}.hero h1{font-size:32px}.hero img{height:260px}.grid{grid-template-columns:repeat(2,1fr);gap:10px;padding:0 10px 20px}.card img{height:140px}}
+</style></head>
+<body>
+<header><div><div class="logo-en">FARIDA <span>DECOR</span></div><div class="logo-ar">فريدة ديكور</div><div class="tagline">فن التصميم ممزوج بتشطيبات عالمية</div></div>
+<div class="socials"><a class="wa" href="https://wa.me/201065871712" target="_blank">✆</a><a class="fb" href="https://www.facebook.com/share/1H3A31Ah62/" target="_blank">f</a><a class="ig" href="#" target="_blank">◎</a><button class="btn">تصفح الكتالوج</button></div></header>
+<section class="hero"><div><h1>FARIDA <span>DECOR</span></h1><div class="ruqaa">لمسة من الإبداع</div><p>جميع التصميمات المعروضة نماذج تصورية وأفكار إبداعية توضح إمكانياتنا في تصميم وتنفيذ الديكورات. يمكن تخصيص التصميمات وفقاً لمساحة العميل وذوقه واختياراته.</p><br><button class="btn">شاهد التصاميم</button> <button class="btn" style="background:#25D366;color:#fff">اسألنا على واتساب</button></div><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=80"></section>
+<div class="pills"><button class="active">الكل</button><button>غرف نوم رئيسية</button><button>غرف اطفال</button><button>غرفة معيشة</button><button>وحدة التلفاز</button><button>حوائط</button><button>متاجر</button><button>مطابخ</button><button>فواصل خشبية</button><button>ديكورات</button></div>
+<div class="grid" id="grid"></div>
+<footer><div><h3>الأقسام</h3><div>غرف نوم رئيسية • غرف اطفال • غرفة معيشة • وحدة التلفاز • حوائط • متاجر • مطابخ • فواصل خشبية • ديكورات</div><div style="margin-top:12px;color:#D4AF37">© FARIDA DECOR — علامة تجارية من ذهب</div></div><div><h3>تواصل معنا</h3><div>لحساب تكلفة وحدتك مجاناً تواصل معنا</div><div>بإشراف وتنفيذ فريق من المهندسين المتخصصين</div></div></footer>
+<script>
+const imgs=["1618221195710-dd6b41faaea6","1616486338812-3dadae4b4ace","1616594039964-ae9021a400a0","1617806118233-18e1de247200","1600210492486-724fe5c67fb0","1600607687939-ce8a6c25118c","1600566753086-00f18fb6b3ea","1600585154340-be6161a56a0c","1615873968403-89e068629265","1615529182904-14819c35db37","1617104678098-de3c8f5f8a1c","1616137466211-f939a420be84"];
+const styles=["مودرن","دافئ","فاخر","هادئ","كلاسيك","طبيعي"];const vals=["إحساس بالوسع والهدوء","فخامة بدون تكلف","دفء يخلي البيت أجمل","هدوء يريح الأعصاب","أناقة تدوم","لمسة طبيعية دافئة"];const cats=["حوائط","غرف نوم رئيسية","غرفة معيشة","وحدة التلفاز","مطابخ","متاجر"];
+let h="";for(let i=0;i<12;i++){let n=i+1;h+=`<div class="card"><img src="https://images.unsplash.com/photo-${imgs[i]}?w=800&q=80"><div class="card-b"><span class="badge">${styles[i%6]}</span><div style="font-weight:900;margin-top:6px">تصميم ${cats[i%6]} - ${n}</div><div class="value">${vals[i%6]}</div><div class="code">كود: FD-00${n} • ${cats[i%6]}</div><button class="cta" onclick="window.open('https://wa.me/201065871712?text='+encodeURIComponent('مرحبا Farida Decor - عايز استفسر عن FD-00${n}'))">لحساب تكلفة وحدتك مجاناً تواصل معنا</button></div></div>`}
+document.getElementById('grid').innerHTML=h;
+</script></body></html>
