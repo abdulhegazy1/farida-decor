@@ -35,5 +35,17 @@ footer h3{color:#D4AF37;margin-bottom:8px}footer div{color:#ddd;line-height:2;fo
 const imgs=["1618221195710-dd6b41faaea6","1616486338812-3dadae4b4ace","1616594039964-ae9021a400a0","1617806118233-18e1de247200","1600210492486-724fe5c67fb0","1600607687939-ce8a6c25118c","1600566753086-00f18fb6b3ea","1600585154340-be6161a56a0c","1615873968403-89e068629265","1615529182904-14819c35db37","1617104678098-de3c8f5f8a1c","1616137466211-f939a420be84"];
 const styles=["مودرن","دافئ","فاخر","هادئ","كلاسيك","طبيعي"];const vals=["إحساس بالوسع والهدوء","فخامة بدون تكلف","دفء يخلي البيت أجمل","هدوء يريح الأعصاب","أناقة تدوم","لمسة طبيعية دافئة"];const cats=["حوائط","غرف نوم رئيسية","غرفة معيشة","وحدة التلفاز","مطابخ","متاجر"];
 let h="";for(let i=0;i<12;i++){let n=i+1;h+=`<div class="card"><img src="https://images.unsplash.com/photo-${imgs[i]}?w=800&q=80"><div class="card-b"><span class="badge">${styles[i%6]}</span><div style="font-weight:900;margin-top:6px">تصميم ${cats[i%6]} - ${n}</div><div class="value">${vals[i%6]}</div><div class="code">كود: FD-00${n} • ${cats[i%6]}</div><button class="cta" onclick="window.open('https://wa.me/201065871712?text='+encodeURIComponent('مرحبا Farida Decor - عايز استفسر عن FD-00${n}'))">لحساب تكلفة وحدتك مجاناً تواصل معنا</button></div></div>`}
-document.getElementById('grid').innerHTML=h;
-</script></body></html>
+const allCards = [...document.querySelectorAll('.card')];
+document.querySelectorAll('.pills button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('.pills button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    const cat = b.textContent.trim();
+    allCards.forEach(card=>{
+      const cardCat = card.querySelector('.code').textContent;
+      if(cat==='الكل' || cardCat.includes(cat)){ card.style.display='block'; }
+      else { card.style.display='none'; }
+    });
+    document.getElementById('grid').scrollIntoView({behavior:'smooth'});
+  }
+});</script></body></html>
