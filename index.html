@@ -32,20 +32,36 @@ footer h3{color:#D4AF37;margin-bottom:8px}footer div{color:#ddd;line-height:2;fo
 <div class="grid" id="grid"></div>
 <footer><div><h3>الأقسام</h3><div>غرف نوم رئيسية • غرف اطفال • غرفة معيشة • وحدة التلفاز • حوائط • متاجر • مطابخ • فواصل خشبية • ديكورات</div><div style="margin-top:12px;color:#D4AF37">© FARIDA DECOR — علامة تجارية من ذهب</div></div><div><h3>تواصل معنا</h3><div>لحساب تكلفة وحدتك مجاناً تواصل معنا</div><div>بإشراف وتنفيذ فريق من المهندسين المتخصصين</div></div></footer>
 <script>
-const imgs=["1618221195710-dd6b41faaea6","1616486338812-3dadae4b4ace","1616594039964-ae9021a400a0","1617806118233-18e1de247200","1600210492486-724fe5c67fb0","1600607687939-ce8a6c25118c","1600566753086-00f18fb6b3ea","1600585154340-be6161a56a0c","1615873968403-89e068629265","1615529182904-14819c35db37","1617104678098-de3c8f5f8a1c","1616137466211-f939a420be84"];
-const styles=["مودرن","دافئ","فاخر","هادئ","كلاسيك","طبيعي"];const vals=["إحساس بالوسع والهدوء","فخامة بدون تكلف","دفء يخلي البيت أجمل","هدوء يريح الأعصاب","أناقة تدوم","لمسة طبيعية دافئة"];const cats=["حوائط","غرف نوم رئيسية","غرفة معيشة","وحدة التلفاز","مطابخ","متاجر"];
-let h="";for(let i=0;i<12;i++){let n=i+1;h+=`<div class="card"><img src="https://images.unsplash.com/photo-${imgs[i]}?w=800&q=80"><div class="card-b"><span class="badge">${styles[i%6]}</span><div style="font-weight:900;margin-top:6px">تصميم ${cats[i%6]} - ${n}</div><div class="value">${vals[i%6]}</div><div class="code">كود: FD-00${n} • ${cats[i%6]}</div><button class="cta" onclick="window.open('https://wa.me/201065871712?text='+encodeURIComponent('مرحبا Farida Decor - عايز استفسر عن FD-00${n}'))">لحساب تكلفة وحدتك مجاناً تواصل معنا</button></div></div>`}
-const allCards = [...document.querySelectorAll('.card')];
+const designs = [
+  {img:"1618221195710-dd6b41faaea6", cat:"حوائط", style:"مودرن", val:"إحساس بالوسع والهدوء"},
+  {img:"1616486338812-3dadae4b4ace", cat:"غرف نوم رئيسية", style:"دافئ", val:"فخامة بدون تكلف"},
+  {img:"1616594039964-ae9021a400a0", cat:"غرفة معيشة", style:"فاخر", val:"دفء يخلي البيت أجمل"},
+  {img:"1617806118233-18e1de247200", cat:"وحدة التلفاز", style:"هادئ", val:"هدوء يريح الأعصاب"},
+  {img:"1600210492486-724fe5c67fb0", cat:"مطابخ", style:"كلاسيك", val:"أناقة تدوم"},
+  {img:"1600607687939-ce8a6c25118c", cat:"متاجر", style:"طبيعي", val:"لمسة طبيعية دافئة"},
+  {img:"1600566753086-00f18fb6b3ea", cat:"حوائط", style:"مودرن", val:"إحساس بالوسع والهدوء"},
+  {img:"1600585154340-be6161a56a0c", cat:"غرف نوم رئيسية", style:"دافئ", val:"فخامة بدون تكلف"},
+  {img:"1615873968403-89e068629265", cat:"غرفة معيشة", style:"فاخر", val:"دفء يخلي البيت أجمل"},
+  {img:"1615529182904-14819c35db37", cat:"وحدة التلفاز", style:"هادئ", val:"هدوء يريح الأعصاب"},
+  {img:"1617104678098-de3c8f5f8a1c", cat:"مطابخ", style:"كلاسيك", val:"أناقة تدوم"},
+  {img:"1616137466211-f939a420be84", cat:"متاجر", style:"طبيعي", val:"لمسة طبيعية دافئة"},
+];
+function render(cat){
+  let h="";
+  designs.forEach((d,i)=>{
+    if(cat==="الكل" || d.cat===cat){
+      let n = String(i+1).padStart(3,'0');
+      h+=`<div class="card"><img src="https://images.unsplash.com/photo-${d.img}?w=800&q=80"><div class="card-b"><span class="badge">${d.style}</span><div style="font-weight:900;margin-top:6px">تصميم ${d.cat} - ${i+1}</div><div class="value">${d.val}</div><div class="code">كود: FD-${n} • ${d.cat}</div><button class="cta" onclick="window.open('https://wa.me/201065871712?text='+encodeURIComponent('مرحبا Farida Decor - عايز استفسر عن FD-${n}'))">لحساب تكلفة وحدتك مجاناً تواصل معنا</button></div></div>`;
+    }
+  });
+  document.getElementById('grid').innerHTML=h;
+}
+render("الكل");
 document.querySelectorAll('.pills button').forEach(b=>{
   b.onclick=()=>{
     document.querySelectorAll('.pills button').forEach(x=>x.classList.remove('active'));
     b.classList.add('active');
-    const cat = b.textContent.trim();
-    allCards.forEach(card=>{
-      const cardCat = card.querySelector('.code').textContent;
-      if(cat==='الكل' || cardCat.includes(cat)){ card.style.display='block'; }
-      else { card.style.display='none'; }
-    });
-    document.getElementById('grid').scrollIntoView({behavior:'smooth'});
+    render(b.textContent.trim());
   }
-});</script></body></html>
+});
+</script></body></html>
