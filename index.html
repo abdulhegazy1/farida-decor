@@ -67,9 +67,7 @@ footer h3{color:#D4AF37;margin-bottom:8px}footer div{color:#ddd;line-height:2;fo
 .favbar button{background:#2A1E12;color:#fff;border:1px solid #3a2c1c;padding:8px 14px;border-radius:999px;cursor:pointer}
 .favbar button.active{background:#E1306C;color:#fff;border-color:#E1306C}
 .card-top{position:relative}.card-top img{display:block}
-.favbtn{position:absolute;top:10px;left:10px;width:38px;height:38px;border-radius:50%;border:0;cursor:pointer;background:rgba(0,0,0,.6);color:#fff;font-size:18px;line-height:1}
-.favbtn.on{background:#E1306C;color:#fff}
-.sharebtn{position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:50%;border:0;cursor:pointer;background:rgba(0,0,0,.6);color:#fff;font-size:16px}
+.card-tools{display:flex;gap:8px;margin-top:10px}.favbtn{flex:1;height:40px;border-radius:10px;border:1px solid #3a2c1c;cursor:pointer;background:#2A1E12;color:#D4AF37;font-size:15px;font-weight:800}.favbtn.on{background:#D4AF37;color:#140E08;border-color:#D4AF37}.sharebtn{flex:1;height:40px;border-radius:10px;border:1px solid #3a2c1c;cursor:pointer;background:#2A1E12;color:#fff;font-size:15px;font-weight:800}
 .card-actions{display:flex;gap:8px;margin-top:10px}.card-actions .cta{margin-top:0}
 @media(max-width:768px){.calc{margin:0 10px 14px}.calc-grid{grid-template-columns:1fr 1fr}.calc-result{flex-direction:column;align-items:flex-start}}
 
@@ -90,7 +88,7 @@ footer h3{color:#D4AF37;margin-bottom:8px}footer div{color:#ddd;line-height:2;fo
 .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .compare-grid img{width:100%;height:260px;object-fit:cover;border-radius:12px}
 .quiz-q{margin:12px 0}.quiz-q b{display:block;margin-bottom:8px}.quiz-q button{margin:4px;background:#2A1E12;color:#fff;border:1px solid #3a2c1c;padding:9px 13px;border-radius:999px;cursor:pointer}.quiz-q button.sel{background:#D4AF37;color:#140E08}
-.book-form{display:grid;gap:10px}.book-form input,.book-form select{padding:12px;border-radius:10px;border:1px solid #3a2c1c;background:#140E08;color:#fff;font-family:inherit}
+.slider-row{display:flex;gap:8px;overflow-x:auto;padding:6px 2px 10px;scrollbar-width:thin}.slider-row button{flex:0 0 auto;background:#2A1E12;color:#fff;border:1px solid #3a2c1c;padding:9px 16px;border-radius:999px;cursor:pointer;font-weight:700}.slider-row button.sel{background:#D4AF37;color:#140E08;border-color:#D4AF37}.book-form{display:grid;gap:10px}.slider-row{display:flex;gap:8px;overflow-x:auto;padding:6px 2px 10px;scrollbar-width:thin}.slider-row button{flex:0 0 auto;background:#2A1E12;color:#fff;border:1px solid #3a2c1c;padding:9px 16px;border-radius:999px;cursor:pointer;font-weight:700}.slider-row button.sel{background:#D4AF37;color:#140E08;border-color:#D4AF37}.book-form input,.slider-row{display:flex;gap:8px;overflow-x:auto;padding:6px 2px 10px;scrollbar-width:thin}.slider-row button{flex:0 0 auto;background:#2A1E12;color:#fff;border:1px solid #3a2c1c;padding:9px 16px;border-radius:999px;cursor:pointer;font-weight:700}.slider-row button.sel{background:#D4AF37;color:#140E08;border-color:#D4AF37}.book-form select{padding:12px;border-radius:10px;border:1px solid #3a2c1c;background:#140E08;color:#fff;font-family:inherit}
 @media(max-width:768px){.compare-grid{grid-template-columns:1fr}.compare-grid img{height:200px}}
 </style></head>
 <body>
@@ -108,178 +106,171 @@ footer h3{color:#D4AF37;margin-bottom:8px}footer div{color:#ddd;line-height:2;fo
   <div class="reels-progress"><span id="reelsBar"></span></div>
   <div class="reels-count"><span id="reelsNum">1</span> / <span id="reelsTotal">0</span></div>
 </div></section>
-<div class="favbar"><button id="favFilterBtn" onclick="toggleFavOnly()">❤️ مفضلتي (<span id="favCount">0</span>)</button><button id="sendFavBtn" onclick="sendFavs()">ابعت المفضلة على واتساب</button><span id="favHint" style="font-size:12px;color:#aaa">دوس ❤️ على أي تصميم يعجبك وهيتحفظ هنا</span></div>
-<div class="top-actions"><button onclick="openModal('quizModal')">🎯 اختبر ستايلك</button><button class="ghost" onclick="openModal('bookModal')">📅 احجز معاينة مجانية</button></div>
+<div class="favbar"><button id="favFilterBtn" onclick="toggleFavOnly()">⭐ مفضلتي (<span id="favCount">0</span>)</button><button id="sendFavBtn" onclick="sendFavs()">ابعت المفضلة على واتساب</button></div>
+<div class="top-actions"><button onclick="openModal('quizModal')">🎯 اكتشف هويتك التصميمية</button><button class="ghost" onclick="openModal('bookModal')">📅 احجز معاينة مجانية</button></div>
 <div class="comparebar" id="compareBar"><span id="compareText">اخترت تصميم (0/2)</span><button onclick="showCompare()">قارن دلوقتي</button><button onclick="clearCompare()">مسح</button></div>
 <div class="modal" id="lightModal"><div class="modal-box"><button class="close" onclick="closeModal('lightModal')">✕</button><img class="lightbox-img" id="lightImg" onclick="this.classList.toggle('zoom')"><div class="lb-nav"><button onclick="lightStep(-1)">اللي قبله</button><span id="lightInfo" style="color:#fff"></span><button onclick="lightStep(1)">اللي بعده</button></div></div></div>
 <div class="modal" id="compareModal"><div class="modal-box"><button class="close" onclick="closeModal('compareModal')">✕</button><h2 style="color:#D4AF37">مقارنة بين تصميمين</h2><div class="compare-grid" id="compareGrid"></div></div></div>
-<div class="modal" id="quizModal"><div class="modal-box"><button class="close" onclick="closeModal('quizModal')">✕</button><h2 style="color:#D4AF37">إيه ستايلك؟</h2><p style="color:#ccc;font-size:13px">جاوب 3 أسئلة وهنرشحلك 6 تصميمات</p><div class="quiz-q"><b>1. بتحب الألوان؟</b><br><button onclick="quizPick(this,'color','فاتح')">فاتحة</button><button onclick="quizPick(this,'color','غامق')">غامقة</button></div><div class="quiz-q"><b>2. بتحب الخامة؟</b><br><button onclick="quizPick(this,'mat','خشب')">بديل خشب</button><button onclick="quizPick(this,'mat','رخام')">بديل رخام</button><button onclick="quizPick(this,'mat','حجر')">بديل حجر</button></div><div class="quiz-q"><b>3. شقتك؟</b><br><button onclick="quizPick(this,'size','صغيرة')">صغيرة</button><button onclick="quizPick(this,'size','كبيرة')">كبيرة</button></div><button class="btn" onclick="runQuiz()">اعرض ترشيحاتي</button><div id="quizResult" style="margin-top:14px"></div></div></div>
-<div class="modal" id="bookModal"><div class="modal-box"><button class="close" onclick="closeModal('bookModal')">✕</button><h2 style="color:#D4AF37">احجز معاينة مجانية</h2><div class="book-form"><input id="bName" placeholder="اسمك"><input id="bPhone" placeholder="رقم الواتساب"><input id="bArea" placeholder="المنطقة - مثال: الإسكندرية، سموحة"><select id="bType"><option>غرفة نوم</option><option>مطبخ</option><option>وحدة TV</option><option>ريسبشن كامل</option><option>محل</option><option>شقة كاملة</option></select><input id="bDate" type="date"><button class="btn" style="background:#25D366;color:#fff" onclick="sendBooking()">ابعت الحجز على واتساب</button></div></div></div>
+<div class="modal" id="quizModal"><div class="modal-box"><button class="close" onclick="closeModal('quizModal')">✕</button><h2 style="color:#D4AF37">ما هي هويتك التصميمية؟</h2><p style="color:#ccc;font-size:13px">جاوب 3 أسئلة وهنرشحلك تصميمات على ذوقك بالظبط</p><div class="quiz-q"><b>1. بتحب الألوان؟</b><br><button onclick="quizPick(this,'color','فاتح')">فاتحة</button><button onclick="quizPick(this,'color','دافئ')">دافئة</button><button onclick="quizPick(this,'color','غامق')">غامقة</button></div><div class="quiz-q"><b>2. بتحب الخامة؟</b><br><button onclick="quizPick(this,'mat','خشب')">بديل خشب</button><button onclick="quizPick(this,'mat','رخام')">بديل رخام</button><button onclick="quizPick(this,'mat','حجر')">بديل حجر</button><button onclick="quizPick(this,'mat','حجر + خشب')">ميكس حجر + خشب</button><button onclick="quizPick(this,'mat','رخام + خشب')">ميكس رخام + خشب</button><button onclick="quizPick(this,'mat','رخام + حجر')">ميكس رخام + حجر</button><button onclick="quizPick(this,'mat','طبيعية')">خامات طبيعية</button><button onclick="quizPick(this,'mat','معدن + زجاج')">معدن + زجاج</button></div><div class="quiz-q"><b>3. المعاينة / التصميم على قسم إيه؟</b><div class="slider-row"><button onclick="quizPick(this,'cat','BedRooms')">BedRooms</button><button onclick="quizPick(this,'cat','Kids Rooms')">Kids Rooms</button><button onclick="quizPick(this,'cat','Living')">Living</button><button onclick="quizPick(this,'cat','TV Units')">TV Units</button><button onclick="quizPick(this,'cat','Walls')">Walls</button><button onclick="quizPick(this,'cat','Shops')">Shops</button><button onclick="quizPick(this,'cat','Kitchens')">Kitchens</button><button onclick="quizPick(this,'cat','Partitions')">Partitions</button><button onclick="quizPick(this,'cat','Decors')">Decors</button><button onclick="quizPick(this,'cat','OTHER')">OTHER</button></div></div><button class="btn" onclick="runQuiz()">اعرض ترشيحاتي</button><div id="quizResult"></div></div></div>
+<div class="modal" id="bookModal"><div class="modal-box"><button class="close" onclick="closeModal('bookModal')">✕</button><h2 style="color:#D4AF37">احجز معاينة مجانية</h2><div class="book-form"><input id="bName" placeholder="اسمك"><input id="bArea" placeholder="المنطقة - مثال: الإسكندرية، سموحة"><label style="font-size:13px;color:#ccc">كود التصميم اللي عايز تعمله</label><input id="bCode" placeholder="اكتب كود التصميم - مثال: FD-001"><label style="display:flex;gap:8px;align-items:center;font-size:13px;color:#fff;cursor:pointer"><input type="checkbox" id="bUndecided" onchange="document.getElementById('bCode').disabled=this.checked"> لسه مقررتش تصميم معين - ساعدوني أختار</label><label style="font-size:13px;color:#ccc">المعاينة هتكون على قسم إيه؟</label><div class="slider-row" id="bookSlider"><button onclick="bookPick(this,'BedRooms')">BedRooms</button><button onclick="bookPick(this,'Kids Rooms')">Kids Rooms</button><button onclick="bookPick(this,'Living')">Living</button><button onclick="bookPick(this,'TV Units')">TV Units</button><button onclick="bookPick(this,'Walls')">Walls</button><button onclick="bookPick(this,'Shops')">Shops</button><button onclick="bookPick(this,'Kitchens')">Kitchens</button><button onclick="bookPick(this,'Partitions')">Partitions</button><button onclick="bookPick(this,'Decors')">Decors</button><button onclick="bookPick(this,'OTHER')">OTHER</button></div><input id="bDate" type="date"><button class="btn" style="background:#25D366;color:#fff" onclick="sendBooking()">ابعت الحجز على واتساب</button></div></div></div>
 <div class="modal" id="advModal"><div class="modal-box"><button class="close" onclick="closeModal('advModal')">✕</button><h2 style="color:#D4AF37">🔍 بحث متقدم</h2><p style="color:#ccc;font-size:13px">دوّر بالكود أو القسم أو اسم الستايل</p><div class="book-form"><input id="advCode" placeholder="دوّر بالكود - مثال: FD-001"><select id="advCat"><option value="All">كل الأقسام - All</option><option>BedRooms</option><option>Kids Rooms</option><option>Living</option><option>TV Units</option><option>Walls</option><option>Shops</option><option>Kitchens</option><option>Partitions</option><option>Decors</option></select><input id="advStyle" placeholder="دوّر بالستايل - مثال: نوم هادي"><button class="btn" onclick="runAdvancedSearch()">اعرض النتايج</button><button class="btn" style="background:#2A1E12;color:#fff;border:1px solid #3a2c1c" onclick="clearAdvancedSearch()">مسح البحث</button></div><div id="advResult" style="margin-top:14px;color:#ccc;font-size:13px"></div></div></div>
 <div class="pills"><button class="active">All</button><button>BedRooms</button><button>Kids Rooms</button><button>Living</button><button>TV Units</button><button>Walls</button><button>Shops</button><button>Kitchens</button><button>Partitions</button><button>Decors</button></div>
 <div class="grid" id="grid"></div>
-<footer><div><h3>الأقسام</h3><div>BedRooms • Kids Rooms • Living • TV Units • Walls • Shops • Kitchens • Partitions • Decors</div><div style="margin-top:12px;color:#D4AF37">© FARIDA DECOR — علامة تجارية من ذهب</div></div><div><h3>تواصل معنا</h3><div>لحساب تكلفة وحدتك مجاناً تواصل معنا</div><div>بإشراف وتنفيذ فريق من المهندسين المتخصصين</div></div></footer>
+<footer><div><h3>الأقسام</h3><div>BedRooms • Kids Rooms • Living • TV Units • Walls • Shops • Kitchens • Partitions • Decors</div><div style="margin-top:12px;color:#D4AF37">© FARIDA DECOR — علامة تجارية من ذهب</div></div><div><a href="#" class="logo" style="margin-bottom:10px"><b>FARIDA <span>DECOR</span></b><i>فريدة ديكور</i></a><h3>تواصل معنا</h3><div>لحساب تكلفة وحدتك مجاناً تواصل معنا</div><div>بإشراف وتنفيذ فريق من المهندسين المتخصصين</div><div style="margin-top:12px;color:#D4AF37;font-weight:900;font-size:16px">📍 نصلك أينما تكون — معاينة مجانية لحد باب بيتك</div></div></footer>
 <script>
 const designs = [
-
         // BedRooms
-  {img:"images/bedrooms/bedrooms01.jpg", cat:"BedRooms", style:"نوم هادي", val:"إضاءة 2700K دافئة تساعد على النوم"},
-  {img:"images/bedrooms/bedrooms02.jpg", cat:"BedRooms", style:"تخزين ذكي", val:"دولاب لحد السقف بدون ما يضيق الأوضة"},
-  {img:"images/bedrooms/bedrooms03.jpg", cat:"BedRooms", style:"هدوء تام", val:"ألوان ترابية تهدي الأعصاب بعد يوم طويل"},
-  {img:"images/bedrooms/bedrooms04.jpg", cat:"BedRooms", style:"بديل خشب", val:"شرائح بديل خشب خلف السرير بتكلفة أقل"},
-  {img:"images/bedrooms/bedrooms05.jpg", cat:"BedRooms", style:"إضاءة مخفية", val:"ليد مخفي يدي إحساس فندقي بسيط"},
-  {img:"images/bedrooms/bedrooms06.jpg", cat:"BedRooms", style:"مساحة مرتاحة", val:"سرير 160 + ممر مريح من الناحيتين"},
-  {img:"images/bedrooms/bedrooms07.jpg", cat:"BedRooms", style:"تشطيب عملي", val:"خامات سهلة التنضيف وتستحمل الاستخدام"},
-  {img:"images/bedrooms/bedrooms08.jpg", cat:"BedRooms", style:"لمسة فندقية", val:"كومودينو بديل رخام + أباجورة هادية"},
-  {img:"images/bedrooms/bedrooms09.jpg", cat:"BedRooms", style:"تناسق ألوان", val:"بيج + كافيه بدون دوشة بصرية"},
-  {img:"images/bedrooms/bedrooms10.jpg", cat:"BedRooms", style:"خصوصية", val:"ستارة بلاك أوت + إضاءة جانبية هادية"},
-  {img:"images/bedrooms/bedrooms11.jpg", cat:"BedRooms", style:"بساطة راقية", val:"حائط واحد مميز يكفي لتغيير الأوضة"},
-  {img:"images/bedrooms/bedrooms12.jpg", cat:"BedRooms", style:"راحة العين", val:"ألوان فاتحة توسع الأوضة الصغيرة"},
-  {img:"images/bedrooms/bedrooms13.jpg", cat:"BedRooms", style:"تنفيذ نضيف", val:"فواصل بديل خشب بدون لحامات باينة"},
-  {img:"images/bedrooms/bedrooms14.jpg", cat:"BedRooms", style:"دفء البيت", val:"خشب فاتح + بطانية + زرع صغير"},
-  {img:"images/bedrooms/bedrooms15.jpg", cat:"BedRooms", style:"نوم عميق", val:"تصميم يقلل الإضاءة المباشرة على السرير"},
-
+  {img:"images/bedrooms/bedrooms01.jpg", cat:"BedRooms", style:"حائط السرير المضيء", val:"خلفية سرير بإضاءة خافتة تخلّي أوضة النوم تهدى أول ما تدخل"},
+  {img:"images/bedrooms/bedrooms02.jpg", cat:"BedRooms", style:"دولاب بمراية كاملة", val:"دولاب من الأرض للسقف بمراية توسّع الأوضة وتلمّ كل هدومك"},
+  {img:"images/bedrooms/bedrooms03.jpg", cat:"BedRooms", style:"ألوان ترابية ناعمة", val:"بيج وكافيه بدرجات هادية تخلّي النوم أعمق بعد يوم طويل"},
+  {img:"images/bedrooms/bedrooms04.jpg", cat:"BedRooms", style:"شرائح خشب خلف السرير", val:"حائط شرائح خشب يدي عمق وشكل فندقي من غير تكلفة عالية"},
+  {img:"images/bedrooms/bedrooms05.jpg", cat:"BedRooms", style:"ليد مخفي فوق السرير", val:"إضاءة مخفية حوالين السرير تدي إحساس راقي وتنوّر بالليل من غير ما تصحّيك"},
+  {img:"images/bedrooms/bedrooms06.jpg", cat:"BedRooms", style:"سرير بظهر كابوتنيه", val:"ظهر سرير مبطّن بقماش ناعم للقعدة والقراءة قبل النوم"},
+  {img:"images/bedrooms/bedrooms07.jpg", cat:"BedRooms", style:"حائط بديل رخام", val:"لوح بديل رخام خلف السرير يبان غالي وتقفيله نضيف"},
+  {img:"images/bedrooms/bedrooms08.jpg", cat:"BedRooms", style:"كومودينو معلّق", val:"كومودينو طاير بجانب السرير يوفّر مساحة ويبان خفيف"},
+  {img:"images/bedrooms/bedrooms09.jpg", cat:"BedRooms", style:"ستارة بلاك أوت", val:"ستارة تحجب النور تماماً لنوم أعمق حتى في عز الضهر"},
+  {img:"images/bedrooms/bedrooms10.jpg", cat:"BedRooms", style:"حائط واحد مميز", val:"حائط بلون مختلف يكفي يغيّر شكل الأوضة كلها من غير تكسير"},
+  {img:"images/bedrooms/bedrooms11.jpg", cat:"BedRooms", style:"ألوان فاتحة توسّع", val:"أبيض وأوف وايت يفتحوا الأوضة الصغيرة ويخلوها تتنفس"},
+  {img:"images/bedrooms/bedrooms12.jpg", cat:"BedRooms", style:"فواصل خشب ناعمة", val:"فواصل بديل خشب تفصل ركن التسريحة من غير ما تقفل الأوضة"},
+  {img:"images/bedrooms/bedrooms13.jpg", cat:"BedRooms", style:"خشب فاتح ودفء", val:"خشب فاتح مع مفروشات بيضا يدي إحساس بالدفء والبيت"},
+  {img:"images/bedrooms/bedrooms14.jpg", cat:"BedRooms", style:"إضاءة جانبية هادية", val:"أباجورات على الجانبين تنوّر للقراءة من غير إضاءة قوية على السرير"},
+  {img:"images/bedrooms/bedrooms15.jpg", cat:"BedRooms", style:"سجادة وملمس ناعم", val:"طبقات قماش وسجادة ناعمة تخلي أول خطوة الصبح مريحة"},
 
         // Kids Rooms
-  {img:"images/kids/kids01.jpg", cat:"Kids Rooms", style:"أمان أولاً", val:"زوايا مدورة وخامات غير سامة للطفل"},
-  {img:"images/kids/kids02.jpg", cat:"Kids Rooms", style:"ركن مذاكرة", val:"مكتب بإضاءة صح + كرسي مريح"},
-  {img:"images/kids/kids03.jpg", cat:"Kids Rooms", style:"يكبر معاه", val:"تصميم يتعدل لما الطفل يكبر"},
-  {img:"images/kids/kids04.jpg", cat:"Kids Rooms", style:"تخزين الألعاب", val:"صناديق وأرفف على مستوى الطفل"},
-  {img:"images/kids/kids05.jpg", cat:"Kids Rooms", style:"ألوان تنشط", val:"باستيل مبهج بدون ما يزعج العين"},
-  {img:"images/kids/kids06.jpg", cat:"Kids Rooms", style:"نوم مريح", val:"سرير آمن + إضاءة ليلية هادية"},
-  {img:"images/kids/kids07.jpg", cat:"Kids Rooms", style:"مساحة لعب", val:"أرضية فاضية للعب بدون زحمة"},
-  {img:"images/kids/kids08.jpg", cat:"Kids Rooms", style:"تنظيم سهل", val:"كل لعبة ليها مكانها فيرفعها لوحده"},
-  {img:"images/kids/kids09.jpg", cat:"Kids Rooms", style:"خامات عملية", val:"دهان قابل للغسيل ويستحمل الشخبطة"},
-  {img:"images/kids/kids10.jpg", cat:"Kids Rooms", style:"إضاءة صح", val:"إضاءة بيضاء للمذاكرة + دافئة للنوم"},
-  {img:"images/kids/kids11.jpg", cat:"Kids Rooms", style:"ركن قراءة", val:"كرسي صغير + رف كتب على قد إيده"},
-  {img:"images/kids/kids12.jpg", cat:"Kids Rooms", style:"شخصية الطفل", val:"حائط يقدر يعلق عليه رسوماته"},
-  {img:"images/kids/kids13.jpg", cat:"Kids Rooms", style:"مشاركة", val:"سريرين في أوضة واحدة بتنظيم ذكي"},
-  {img:"images/kids/kids14.jpg", cat:"Kids Rooms", style:"هدوء قبل النوم", val:"ألوان هادية تهدي الطفل بالليل"},
-  {img:"images/kids/kids15.jpg", cat:"Kids Rooms", style:"شيك وعملي", val:"غرفة شكلها حلو وبتتلم في 5 دقايق"},
+  {img:"images/kids/kids01.jpg", cat:"Kids Rooms", style:"سرير دورين آمن", val:"سرير دورين بسور حماية وسلم ثابت لأوضة إخوات تتلمّ في مساحة واحدة"},
+  {img:"images/kids/kids02.jpg", cat:"Kids Rooms", style:"مكتب مذاكرة بإضاءة صح", val:"مكتب قدام الشباك بإضاءة بيضا تريّح العين وقت المذاكرة"},
+  {img:"images/kids/kids03.jpg", cat:"Kids Rooms", style:"دولاب يتعدّل مع العمر", val:"وحدات تتفك وتتركب تاني لما الطفل يكبر من غير ما تغيّر الأوضة كلها"},
+  {img:"images/kids/kids04.jpg", cat:"Kids Rooms", style:"صناديق ألعاب على قد إيده", val:"أرفف وصناديق واطية يلمّ فيها لعبه لوحده من غير ما تطلب منه"},
+  {img:"images/kids/kids05.jpg", cat:"Kids Rooms", style:"ألوان باستيل مبهجة", val:"مينت وأصفر باستيل ينشّطوا الطفل من غير ما يزعجوا عينه"},
+  {img:"images/kids/kids06.jpg", cat:"Kids Rooms", style:"سرير بإضاءة ليلية", val:"إضاءة ليلية خافتة جنب السرير تطمّن الطفل لو صحي بالليل"},
+  {img:"images/kids/kids07.jpg", cat:"Kids Rooms", style:"أرضية فاضية للعب", val:"توزيع يسيب مساحة فاضية في النص للعب والحركة من غير زحمة"},
+  {img:"images/kids/kids08.jpg", cat:"Kids Rooms", style:"ركن رسم على الحيطة", val:"حائط قابل للكتابة يرسم عليه براحته من غير ما يبوّظ الدهان"},
+  {img:"images/kids/kids09.jpg", cat:"Kids Rooms", style:"دهان يتغسل", val:"دهان قابل للغسيل يستحمل الشخبطة والألوان ويتنضف بفوطة"},
+  {img:"images/kids/kids10.jpg", cat:"Kids Rooms", style:"ركن قراءة صغير", val:"بين باج ورف كتب واطي يخلي القراءة عادة مش واجب"},
+  {img:"images/kids/kids11.jpg", cat:"Kids Rooms", style:"خزانة ملابس منفصلة", val:"دولاب مقسّم هدوم ولعب وكتب كل حاجة في مكانها"},
+  {img:"images/kids/kids12.jpg", cat:"Kids Rooms", style:"حائط صور ورسومات", val:"لوحة يعلّق عليها رسوماته وشهاداته وتحسسه إن الأوضة بتاعته"},
+  {img:"images/kids/kids13.jpg", cat:"Kids Rooms", style:"سريرين بتنظيم مظبوط", val:"سريرين متوازيين بممر في النص يدي كل طفل مساحته"},
+  {img:"images/kids/kids14.jpg", cat:"Kids Rooms", style:"ألوان هادية قبل النوم", val:"أزرق فاتح ورمادي هادي يهدّوا الطفل ويجهزوه للنوم"},
+  {img:"images/kids/kids15.jpg", cat:"Kids Rooms", style:"أوضة تتلم في 5 دقايق", val:"كل حاجة ليها مكان ثابت فالتنظيم يبقى لعبة مش خناقة"},
 
         // Living
-
-  {img:"images/living/living01.jpg", cat:"Living", style:"قعدة عيلة", val:"كنبة L تلمّ الكل قدام بعض"},
-  {img:"images/living/living02.jpg", cat:"Living", style:"استقبال شيك", val:"أول انطباع راقي للضيف من أول دخلة"},
-  {img:"images/living/living03.jpg", cat:"Living", style:"بديل رخام", val:"حائط بديل رخام + ليد مخفي"},
-  {img:"images/living/living04.jpg", cat:"Living", style:"شرائح خشب", val:"شرائح بديل خشب تكسر بياض الحيطة"},
-  {img:"images/living/living05.jpg", cat:"Living", style:"ركن قهوة", val:"ركن صغير للقهوة جنب الشباك"},
-  {img:"images/living/living06.jpg", cat:"Living", style:"إضاءة دافئة", val:"إضاءة 3000K تدي إحساس بالدفء"},
-  {img:"images/living/living07.jpg", cat:"Living", style:"تخزين مخفي", val:"وحدة تلمّ كل الكركبة"},
-  {img:"images/living/living08.jpg", cat:"Living", style:"مساحة للضيوف", val:"قعدة تتفتح وتشيل عدد أكبر"},
-  {img:"images/living/living09.jpg", cat:"Living", style:"تناسق ألوان", val:"بيج + زيتي + خشب فاتح"},
-  {img:"images/living/living10.jpg", cat:"Living", style:"وسع بصري", val:"مراية + ألوان فاتحة توسع الريسبشن"},
-  {img:"images/living/living11.jpg", cat:"Living", style:"تفاصيل هادية", val:"مخدات وزرع بدون زحمة"},
-  {img:"images/living/living12.jpg", cat:"Living", style:"تشطيب سهل", val:"خامات تتنضف بفوطة مبلولة"},
-  {img:"images/living/living13.jpg", cat:"Living", style:"قعدة مريحة", val:"عمق كنبة مظبوط للقعدة الطويلة"},
-  {img:"images/living/living14.jpg", cat:"Living", style:"شكل غالي", val:"خامة بديلة بتنفيذ نضيف تبان غالية"},
-  {img:"images/living/living15.jpg", cat:"Living", style:"بيت دافي", val:"تصميم يخليك عايز تقعد في البيت"},
+  {img:"images/living/living01.jpg", cat:"Living", style:"كنبة L تلم العيلة", val:"كنبة حرف L تلمّ العيلة كلها قدام بعض في قعدة واحدة"},
+  {img:"images/living/living02.jpg", cat:"Living", style:"ريسبشن يشرّف الضيف", val:"توزيع يخلي أول انطباع للضيف راقي من أول خطوة"},
+  {img:"images/living/living03.jpg", cat:"Living", style:"حائط بديل رخام + ليد", val:"لوح بديل رخام مضاء من ورا يخلي الحيطة هي بطلة الريسبشن"},
+  {img:"images/living/living04.jpg", cat:"Living", style:"شرائح خشب على الحيطة", val:"شرائح بديل خشب تكسر بياض الحيطة وتدي إحساس بالدفء"},
+  {img:"images/living/living05.jpg", cat:"Living", style:"ركن قهوة جنب الشباك", val:"ترابيزة صغيرة وكرسيين جنب الشباك لفنجان القهوة الصبح"},
+  {img:"images/living/living06.jpg", cat:"Living", style:"إضاءة 3000K دافئة", val:"إضاءة دافئة تخلّي القعدة بالليل مريحة مش إضاءة مكتب"},
+  {img:"images/living/living07.jpg", cat:"Living", style:"وحدة تخزين تلم الكركبة", val:"وحدة مقفولة تلمّ كل حاجة ومفيش حاجة باينة على الوش"},
+  {img:"images/living/living08.jpg", cat:"Living", style:"قعدة تتفتح للضيوف", val:"كنبة تتفرد وكراسي زيادة تتشال وتتحط وقت العزومة"},
+  {img:"images/living/living09.jpg", cat:"Living", style:"بيج + زيتي + خشب", val:"توليفة ألوان هادية تدي شكل غالي من غير مبالغة"},
+  {img:"images/living/living10.jpg", cat:"Living", style:"مراية توسّع الريسبشن", val:"مراية كبيرة في المكان الصح تخلي الريسبشن يبان ضعف مساحته"},
+  {img:"images/living/living11.jpg", cat:"Living", style:"تفاصيل هادية من غير زحمة", val:"مخدات وزرع ولمسات بسيطة تخلي المكان راقي مش مزدحم"},
+  {img:"images/living/living12.jpg", cat:"Living", style:"خامات تتنضف بسهولة", val:"أقمشة ودهانات تتغسل بسرعة وتستحمل قعدة العيلة كل يوم"},
+  {img:"images/living/living13.jpg", cat:"Living", style:"عمق كنبة مظبوط", val:"كنبة بعمق يخليك تقعد مرتاح بالساعات مش تقوم ضهرك واجعك"},
+  {img:"images/living/living14.jpg", cat:"Living", style:"خامة بديلة تبان غالية", val:"بديل خشب ورخام بتنفيذ نضيف يدي شكل طبيعي بسعر أقل"},
+  {img:"images/living/living15.jpg", cat:"Living", style:"بيت يتحب", val:"تصميم يخليك عايز ترجع البيت وتقعد فيه مش تخرج منه"},
 
         // TV Units
-
-  {img:"images/tv-units/tvunit01.jpg", cat:"TV Units", style:"زاوية صح", val:"ارتفاع الشاشة على مستوى العين بالظبط"},
-  {img:"images/tv-units/tvunit02.jpg", cat:"TV Units", style:"كابلات مستخبية", val:"مفيش سلك واحد باين"},
-  {img:"images/tv-units/tvunit03.jpg", cat:"TV Units", style:"بديل رخام", val:"لوح بديل رخام في النص يشد العين"},
-  {img:"images/tv-units/tvunit04.jpg", cat:"TV Units", style:"شرائح جانبية", val:"شرائح خشب يمين وشمال الشاشة"},
-  {img:"images/tv-units/tvunit05.jpg", cat:"TV Units", style:"إضاءة خلفية", val:"ليد خلف الشاشة يريح العين بالليل"},
-  {img:"images/tv-units/tvunit06.jpg", cat:"TV Units", style:"تخزين مخفي", val:"أدراج تلمّ الريموت والشواحن"},
-  {img:"images/tv-units/tvunit07.jpg", cat:"TV Units", style:"وحدة معلقة", val:"وحدة طايرة تدي إحساس بالوسع"},
-  {img:"images/tv-units/tvunit08.jpg", cat:"TV Units", style:"مقاس مظبوط", val:"الوحدة على قد الحيطة لا أكبر ولا أصغر"},
-  {img:"images/tv-units/tvunit09.jpg", cat:"TV Units", style:"صوت أوضح", val:"مكان مخصص للساوند بار"},
-  {img:"images/tv-units/tvunit10.jpg", cat:"TV Units", style:"تنفيذ نضيف", val:"فواصل مش باينة وتقفيل مظبوط"},
-  {img:"images/tv-units/tvunit11.jpg", cat:"TV Units", style:"إضاءة هادية", val:"إضاءة جانبية بدل النور العالي"},
-  {img:"images/tv-units/tvunit12.jpg", cat:"TV Units", style:"شكل سينما", val:"حائط غامق + ليد يدي إحساس سينما"},
-  {img:"images/tv-units/tvunit13.jpg", cat:"TV Units", style:"عملي و شيك", val:"رفوف للديكور بدون زحمة"},
-  {img:"images/tv-units/tvunit14.jpg", cat:"TV Units", style:"تكلفة معقولة", val:"بديل خشب ورخام بنفس شكل الطبيعي"},
-  {img:"images/tv-units/tvunit15.jpg", cat:"TV Units", style:"قعدة مرتاحة", val:"مسافة مشاهدة مريحة للعين"},
+  {img:"images/tv-units/tvunit01.jpg", cat:"TV Units", style:"حائط TV على مستوى العين", val:"ارتفاع الشاشة مظبوط على مستوى العين فالرقبة متتعبش"},
+  {img:"images/tv-units/tvunit02.jpg", cat:"TV Units", style:"كابلات مستخبية تماماً", val:"مسارات مخفية للسلوك فمفيش سلك واحد باين يبوّظ الشكل"},
+  {img:"images/tv-units/tvunit03.jpg", cat:"TV Units", style:"لوح بديل رخام في النص", val:"لوح بديل رخام ورا الشاشة يشد العين ويبقى هو البطل"},
+  {img:"images/tv-units/tvunit04.jpg", cat:"TV Units", style:"شرائح خشب يمين وشمال", val:"شرائح بديل خشب على جانبي الشاشة تعمل إطار شيك"},
+  {img:"images/tv-units/tvunit05.jpg", cat:"TV Units", style:"ليد خلف الشاشة", val:"إضاءة خلفية تريّح العين في الأفلام بالليل وتدي إحساس سينما"},
+  {img:"images/tv-units/tvunit06.jpg", cat:"TV Units", style:"أدراج للريموت والشواحن", val:"أدراج مقفولة تلمّ الريموت والشواحن وكل الكركبة"},
+  {img:"images/tv-units/tvunit07.jpg", cat:"TV Units", style:"وحدة معلقة طايرة", val:"وحدة طايرة من غير رجلين تدي إحساس بالوسع وتنضيف أسهل"},
+  {img:"images/tv-units/tvunit08.jpg", cat:"TV Units", style:"مقاس على قد الحيطة", val:"الوحدة متصممة على مقاس الحيطة بالظبط لا أكبر ولا أصغر"},
+  {img:"images/tv-units/tvunit09.jpg", cat:"TV Units", style:"مكان للساوند بار", val:"رف مخصص للساوند بار يخلي الصوت أوضح وموزع صح"},
+  {img:"images/tv-units/tvunit10.jpg", cat:"TV Units", style:"تقفيل بدون فواصل باينة", val:"فواصل متقفلة بعناية فالحائط يبان قطعة واحدة"},
+  {img:"images/tv-units/tvunit11.jpg", cat:"TV Units", style:"إضاءة جانبية هادية", val:"إضاءة على الجانبين بدل النور العالي وقت المشاهدة"},
+  {img:"images/tv-units/tvunit12.jpg", cat:"TV Units", style:"حائط غامق بإحساس سينما", val:"لون غامق مع ليد يخلي قعدة الأفلام زي السينما بالظبط"},
+  {img:"images/tv-units/tvunit13.jpg", cat:"TV Units", style:"رفوف ديكور من غير زحمة", val:"رفوف صغيرة للتحف والكتب تزيّن من غير ما تزحم"},
+  {img:"images/tv-units/tvunit14.jpg", cat:"TV Units", style:"بديل خشب ورخام بسعر معقول", val:"خامات بديلة بنفس شكل الطبيعي وتكلفة محسوبة"},
+  {img:"images/tv-units/tvunit15.jpg", cat:"TV Units", style:"مسافة مشاهدة مريحة", val:"توزيع يخلي المسافة بين الكنبة والشاشة مريحة للعين"},
 
         // Kitchens
-  {img:"images/kitchens/kitchens01.jpg", cat:"Kitchens", style:"مثلث حركة", val:"بوتاجاز - حوض - تلاجة في مثلث مريح"},
-  {img:"images/kitchens/kitchens02.jpg", cat:"Kitchens", style:"تخزين لحد السقف", val:"وحدات علوية تستغل كل المساحة"},
-  {img:"images/kitchens/kitchens03.jpg", cat:"Kitchens", style:"رخامة عملية", val:"رخامة تستحمل حرارة وتتغسل بسهولة"},
-  {img:"images/kitchens/kitchens04.jpg", cat:"Kitchens", style:"سهل التنضيف", val:"وحدات بدون حفر تلمّ دهون"},
-  {img:"images/kitchens/kitchens05.jpg", cat:"Kitchens", style:"إضاءة تحت الوحدات", val:"ليد ينور الرخامة وانت بتقطع"},
-  {img:"images/kitchens/kitchens06.jpg", cat:"Kitchens", style:"ركن فطار", val:"بار صغير للفطار السريع"},
-  {img:"images/kitchens/kitchens07.jpg", cat:"Kitchens", style:"أدراج ذكية", val:"درج يفتح ويقفل بهدوء ويشيل كتير"},
-  {img:"images/kitchens/kitchens08.jpg", cat:"Kitchens", style:"تهوية صح", val:"مكان شفاط محسوب مش عشوائي"},
-  {img:"images/kitchens/kitchens09.jpg", cat:"Kitchens", style:"خامات تستحمل", val:"وحدات تستحمل بخار ومياه كل يوم"},
-  {img:"images/kitchens/kitchens10.jpg", cat:"Kitchens", style:"مساحة تحضير", val:"رخامة فاضية كفاية للطبخ براحتك"},
-  {img:"images/kitchens/kitchens11.jpg", cat:"Kitchens", style:"ألوان عملية", val:"ألوان متبانش فيها البقع"},
-  {img:"images/kitchens/kitchens12.jpg", cat:"Kitchens", style:"زاوية مستغلة", val:"ركن ميت يتحول لتخزين ذكي"},
-  {img:"images/kitchens/kitchens13.jpg", cat:"Kitchens", style:"تنفيذ مظبوط", val:"أبواب متقفلة على بعض بدون فروق"},
-  {img:"images/kitchens/kitchens14.jpg", cat:"Kitchens", style:"مطبخ يلمّ العيلة", val:"بار يخلي العيلة تقعد مع اللي بيطبخ"},
-  {img:"images/kitchens/kitchens15.jpg", cat:"Kitchens", style:"تكلفة محسوبة", val:"تشطيب عملي بدون مصاريف زيادة"},
+  {img:"images/kitchens/kitchens01.jpg", cat:"Kitchens", style:"مثلث حركة مريح", val:"بوتاجاز وحوض وتلاجة في مثلث يخلي الطبخ أسرع وأسهل"},
+  {img:"images/kitchens/kitchens02.jpg", cat:"Kitchens", style:"وحدات لحد السقف", val:"وحدات علوية تستغل كل الطول وتلمّ كل حاجة فوق"},
+  {img:"images/kitchens/kitchens03.jpg", cat:"Kitchens", style:"رخامة تستحمل حرارة", val:"رخامة تستحمل الحلل السخنة وتتغسل بسهولة كل يوم"},
+  {img:"images/kitchens/kitchens04.jpg", cat:"Kitchens", style:"وحدات بدون حفر", val:"أبواب بدون حفر متلمّش دهون وتتنضف بمسحة واحدة"},
+  {img:"images/kitchens/kitchens05.jpg", cat:"Kitchens", style:"ليد تحت الوحدات", val:"إضاءة تنوّر الرخامة وانت بتقطع من غير ضل على إيدك"},
+  {img:"images/kitchens/kitchens06.jpg", cat:"Kitchens", style:"بار فطار صغير", val:"بار بكرسيين للفطار السريع من غير ما تفتح سفرة"},
+  {img:"images/kitchens/kitchens07.jpg", cat:"Kitchens", style:"أدراج تفتح بهدوء", val:"أدراج بمفصلات هادية تشيل كتير وتقفل من غير صوت"},
+  {img:"images/kitchens/kitchens08.jpg", cat:"Kitchens", style:"مكان شفاط محسوب", val:"الشفاط في المكان الصح يشفط البخار قبل ما ينتشر"},
+  {img:"images/kitchens/kitchens09.jpg", cat:"Kitchens", style:"وحدات تستحمل بخار ومياه", val:"خامات تستحمل بخار الطبخ والمياه كل يوم من غير ما تبوظ"},
+  {img:"images/kitchens/kitchens10.jpg", cat:"Kitchens", style:"رخامة فاضية للتحضير", val:"مساحة تحضير فاضية كفاية تقطع وتجهز براحتك"},
+  {img:"images/kitchens/kitchens11.jpg", cat:"Kitchens", style:"ألوان متبانش فيها البقع", val:"ألوان عملية تستحمل البقع والاستخدام اليومي"},
+  {img:"images/kitchens/kitchens12.jpg", cat:"Kitchens", style:"ركن ميت بقى تخزين", val:"الزاوية اللي كانت مهملة اتحولت لوحدة تخزين عملية"},
+  {img:"images/kitchens/kitchens13.jpg", cat:"Kitchens", style:"أبواب متقفلة على بعض", val:"أبواب متظبطة بدون فروق فالمطبخ يبان قطعة واحدة"},
+  {img:"images/kitchens/kitchens14.jpg", cat:"Kitchens", style:"بار يلم العيلة", val:"بار يخلي العيلة تقعد مع اللي بيطبخ بدل ما يقف لوحده"},
+  {img:"images/kitchens/kitchens15.jpg", cat:"Kitchens", style:"تشطيب عملي بسعر محسوب", val:"مطبخ عملي من غير مصاريف زيادة على حاجات ملهاش لازمة"},
 
         // Shops
-
-  {img:"images/shops/shops01.jpg", cat:"Shops", style:"يبيع من الواجهة", val:"فاترينة تشد العميل قبل ما يدخل"},
-  {img:"images/shops/shops02.jpg", cat:"Shops", style:"عرض يبيع", val:"البضاعة في مستوى العين مش فوق ولا تحت"},
-  {img:"images/shops/shops03.jpg", cat:"Shops", style:"إضاءة تبيع", val:"إضاءة مركزة تخلي المنتج يبان أغلى"},
-  {img:"images/shops/shops04.jpg", cat:"Shops", style:"حركة تبيع", val:"ممر واسع يخلي العميل يلف المحل كله"},
-  {img:"images/shops/shops05.jpg", cat:"Shops", style:"براند واضح", val:"ألوان المحل من ألوان البراند بتاعك"},
-  {img:"images/shops/shops06.jpg", cat:"Shops", style:"كاشير سريع", val:"كاشير في مكان يتشاف ويوصل له بسرعة"},
-  {img:"images/shops/shops07.jpg", cat:"Shops", style:"مخزن منظم", val:"مخزن ورا يخلي المحل دايماً مليان"},
-  {img:"images/shops/shops08.jpg", cat:"Shops", style:"أرفف تستغل", val:"كل متر أرفف بيبيع مش بيزين بس"},
-  {img:"images/shops/shops09.jpg", cat:"Shops", style:"واجهة تشد", val:"واجهة تنور بالليل وتجيب رجل"},
-  {img:"images/shops/shops10.jpg", cat:"Shops", style:"تجربة عميل", val:"العميل يدخل يلاقي كل حاجة بسهولة"},
-  {img:"images/shops/shops11.jpg", cat:"Shops", style:"شكل يثق فيه", val:"تشطيب نضيف يخلي العميل يثق في سعرك"},
-  {img:"images/shops/shops12.jpg", cat:"Shops", style:"عرض موسمي", val:"ركن يتغير مع كل موسم وعرض"},
-  {img:"images/shops/shops13.jpg", cat:"Shops", style:"إضاءة دافئة", val:"إضاءة تخلي المكان مريح ويقعد أكتر"},
-  {img:"images/shops/shops14.jpg", cat:"Shops", style:"تكلفة ترجع", val:"تشطيب معقول يرجع من أول موسم بيع"},
-  {img:"images/shops/shops15.jpg", cat:"Shops", style:"محل يتصور", val:"ركن يخلي العميل يصور وينزل ستوري"},
+  {img:"images/shops/shops01.jpg", cat:"Shops", style:"فاترينة تشد من الشارع", val:"واجهة زجاج مضاءة تخلي اللي ماشي يقف يتفرج قبل ما يدخل"},
+  {img:"images/shops/shops02.jpg", cat:"Shops", style:"البضاعة في مستوى العين", val:"عرض يخلي أهم منتجاتك في مستوى عين العميل مش فوق ولا تحت"},
+  {img:"images/shops/shops03.jpg", cat:"Shops", style:"إضاءة تخلي المنتج أغلى", val:"إضاءة مركزة على المنتج تخليه يبان أغلى ويستاهل سعره"},
+  {img:"images/shops/shops04.jpg", cat:"Shops", style:"ممر يلفّف العميل المحل", val:"ممر واسع يخلي العميل يلف المحل كله ويشوف كل حاجة"},
+  {img:"images/shops/shops05.jpg", cat:"Shops", style:"ألوان من ألوان البراند", val:"ألوان المحل من هوية براندك فالعميل يفتكرك من أول نظرة"},
+  {img:"images/shops/shops06.jpg", cat:"Shops", style:"كاشير يتشاف بسرعة", val:"الكاشير في مكان واضح يوصل له العميل من غير ما يدور"},
+  {img:"images/shops/shops07.jpg", cat:"Shops", style:"مخزن ورا يخلي المحل مليان", val:"مخزن منظم ورا الواجهة يخلي الرفوف دايماً مليانة"},
+  {img:"images/shops/shops08.jpg", cat:"Shops", style:"كل متر أرفف بيبيع", val:"أرفف متصممة تبيع مش تزيّن بس كل متر فيها ليه دور"},
+  {img:"images/shops/shops09.jpg", cat:"Shops", style:"واجهة تنوّر بالليل", val:"واجهة مضاءة بالليل تجيب رجل وتخلي المحل يتشاف من بعيد"},
+  {img:"images/shops/shops10.jpg", cat:"Shops", style:"العميل يلاقي كل حاجة بسهولة", val:"توزيع واضح يخلي العميل يوصل للي عايزه من غير ما يسأل"},
+  {img:"images/shops/shops11.jpg", cat:"Shops", style:"تشطيب يخلي العميل يثق في سعرك", val:"تشطيب نضيف يخلي العميل يحس إن منتجك يستاهل"},
+  {img:"images/shops/shops12.jpg", cat:"Shops", style:"ركن يتغير مع كل موسم", val:"ركن مرن يتغير مع العروض والمواسم من غير تكسير"},
+  {img:"images/shops/shops13.jpg", cat:"Shops", style:"إضاءة تخلي العميل يقعد أكتر", val:"إضاءة دافئة تريح العميل وتخليه يلف براحته"},
+  {img:"images/shops/shops14.jpg", cat:"Shops", style:"تشطيب يرجع من أول موسم", val:"تكلفة محسوبة ترجع من أول موسم بيع مش بعد سنة"},
+  {img:"images/shops/shops15.jpg", cat:"Shops", style:"ركن يتصوّر وينزل ستوري", val:"ركن بإضاءة وشكل مميز يخلي العميل يصور وينزل ستوري لمحلك"},
 
         // Walls
-
-  {img:"images/walls/walls01.jpg", cat:"Walls", style:"حائط مميز", val:"حائط واحد مميز يغير الشقة كلها"},
-  {img:"images/walls/walls02.jpg", cat:"Walls", style:"بديل حجر", val:"ملمس حجر طبيعي بدون تقل الحجر"},
-  {img:"images/walls/walls03.jpg", cat:"Walls", style:"بديل رخام", val:"عروق رخام واضحة وشكل غالي"},
-  {img:"images/walls/walls04.jpg", cat:"Walls", style:"شرائح طولية", val:"شرائح تطوّل الحيطة بصرياً"},
-  {img:"images/walls/walls05.jpg", cat:"Walls", style:"ملمس طبيعي", val:"خامة تتحس مش بس تتشاف"},
-  {img:"images/walls/walls06.jpg", cat:"Walls", style:"إضاءة على الحيطة", val:"ليد يبرز ملمس الخامة بالليل"},
-  {img:"images/walls/walls07.jpg", cat:"Walls", style:"حائط غامق", val:"لون غامق يدي عمق للمكان"},
-  {img:"images/walls/walls08.jpg", cat:"Walls", style:"حائط فاتح", val:"ألوان فاتحة توسع الأوضة الضيقة"},
-  {img:"images/walls/walls09.jpg", cat:"Walls", style:"تناسق خامات", val:"خشب + حجر بتناسق محسوب"},
-  {img:"images/walls/walls10.jpg", cat:"Walls", style:"بدون تكسير", val:"تركيب على الحيطة القديمة بدون تكسير"},
-  {img:"images/walls/walls11.jpg", cat:"Walls", style:"سهل التنضيف", val:"خامة تتمسح ومتبقعش"},
-  {img:"images/walls/walls12.jpg", cat:"Walls", style:"فاصل بصري", val:"حائط يفصل بين قعدتين بدون باب"},
-  {img:"images/walls/walls13.jpg", cat:"Walls", style:"شكل غالي", val:"خامة بديلة بتنفيذ نضيف"},
-  {img:"images/walls/walls14.jpg", cat:"Walls", style:"لمسة فنية", val:"برواز + إضاءة على الحائط المميز"},
-  {img:"images/walls/walls15.jpg", cat:"Walls", style:"يدوم طويلاً", val:"خامة تستحمل وخدشها مش باين"},
+  {img:"images/walls/walls01.jpg", cat:"Walls", style:"حائط واحد يغيّر الشقة", val:"حائط مميز واحد يكفي يغيّر إحساس الشقة كلها"},
+  {img:"images/walls/walls02.jpg", cat:"Walls", style:"ملمس حجر بدون تقل الحجر", val:"بديل حجر بملمس طبيعي من غير وزن وتكلفة الحجر الحقيقي"},
+  {img:"images/walls/walls03.jpg", cat:"Walls", style:"عروق رخام واضحة", val:"بديل رخام بعروق واضحة يدي شكل غالي للحيطة"},
+  {img:"images/walls/walls04.jpg", cat:"Walls", style:"شرائح تطوّل الحيطة", val:"شرائح طولية تخلي الحيطة تبان أطول والسقف أعلى"},
+  {img:"images/walls/walls05.jpg", cat:"Walls", style:"خامة تتحس مش بس تتشاف", val:"ملمس حقيقي تحسه بإيدك مش مجرد شكل على الحيطة"},
+  {img:"images/walls/walls06.jpg", cat:"Walls", style:"ليد يبرز ملمس الخامة", val:"إضاءة على الحيطة تبرز ملمس الخامة بالليل وتعمل ظل ونور"},
+  {img:"images/walls/walls07.jpg", cat:"Walls", style:"لون غامق يدي عمق", val:"حائط غامق يدي عمق ويخلي باقي الأوضة تبرز"},
+  {img:"images/walls/walls08.jpg", cat:"Walls", style:"ألوان فاتحة توسّع الأوضة", val:"حائط فاتح يفتح الأوضة الضيقة ويخليها تتنفس"},
+  {img:"images/walls/walls09.jpg", cat:"Walls", style:"خشب + حجر بتناسق", val:"ميكس خشب وحجر بدرجات محسوبة من غير دوشة"},
+  {img:"images/walls/walls10.jpg", cat:"Walls", style:"تركيب من غير تكسير", val:"تركيب على الحيطة القديمة من غير تكسير ولا بهدلة"},
+  {img:"images/walls/walls11.jpg", cat:"Walls", style:"خامة تتمسح ومتبقعش", val:"سطح أملس يتغسل بسهولة ومتبانش فيه البصمات"},
+  {img:"images/walls/walls12.jpg", cat:"Walls", style:"حائط يفصل بين قعدتين", val:"حائط يفصل بين قعدتين من غير باب ولا يقفل المكان"},
+  {img:"images/walls/walls13.jpg", cat:"Walls", style:"خامة بديلة بتنفيذ نضيف", val:"بديل حجر ورخام بتقفيل مظبوط يبان طبيعي"},
+  {img:"images/walls/walls14.jpg", cat:"Walls", style:"برواز + إضاءة على الحائط", val:"برواز بإضاءة مركزة يخلي الحائط المميز زي لوحة"},
+  {img:"images/walls/walls15.jpg", cat:"Walls", style:"خامة تستحمل وتدوم", val:"خامة تستحمل الخدش والاستخدام اليومي من غير ما تبوظ"},
 
         // Decors
-  {img:"images/decors/decors01.jpg", cat:"Decors", style:"لمسة واحدة تكفي", val:"اكسسوار واحد صح يغير المكان"},
-  {img:"images/decors/decors02.jpg", cat:"Decors", style:"زرع طبيعي", val:"زرع يدي روح للمكان بدون تكلفة"},
-  {img:"images/decors/decors03.jpg", cat:"Decors", style:"مراية توسع", val:"مراية في المكان الصح توسع الأوضة"},
-  {img:"images/decors/decors04.jpg", cat:"Decors", style:"إضاءة دافئة", val:"أباجورة واحدة تغير إحساس البيت"},
-  {img:"images/decors/decors05.jpg", cat:"Decors", style:"ركن قراءة", val:"كرسي + إضاءة + رف = ركنك الخاص"},
-  {img:"images/decors/decors06.jpg", cat:"Decors", style:"تناسق ألوان", val:"3 ألوان بس في المكان كله"},
-  {img:"images/decors/decors07.jpg", cat:"Decors", style:"تفاصيل صغيرة", val:"مخدات وفازة بلمسة محسوبة"},
-  {img:"images/decors/decors08.jpg", cat:"Decors", style:"حائط فاضي", val:"برواز واحد في المكان الصح أحسن من 10"},
-  {img:"images/decors/decors09.jpg", cat:"Decors", style:"رائحة البيت", val:"ركن بخور وشمعة يدي إحساس بالبيت"},
-  {img:"images/decors/decors10.jpg", cat:"Decors", style:"ديكور عملي", val:"ديكور شكله حلو وليه استخدام"},
-  {img:"images/decors/decors11.jpg", cat:"Decors", style:"لمسة ترابية", val:"خامات طبيعية تهدي المكان"},
-  {img:"images/decors/decors12.jpg", cat:"Decors", style:"تغيير سريع", val:"ديكور يتغير من غير ما تكسر حاجة"},
-  {img:"images/decors/decors13.jpg", cat:"Decors", style:"ركن قهوة", val:"ركن صغير يخلي الصبح أحلى"},
-  {img:"images/decors/decors14.jpg", cat:"Decors", style:"بساطة راقية", val:"أقل تفاصيل = شكل أرقى"},
-  {img:"images/decors/decors15.jpg", cat:"Decors", style:"بيت مريح", val:"ديكور يخليك مرتاح مش متوتر"},
-
+  {img:"images/decors/decors01.jpg", cat:"Decors", style:"اكسسوار واحد صح يغيّر المكان", val:"قطعة واحدة مظبوطة أحسن من عشر قطع ملهاش لازمة"},
+  {img:"images/decors/decors02.jpg", cat:"Decors", style:"زرع يدي روح للمكان", val:"زرع طبيعي يدي حياة للمكان من غير تكلفة كبيرة"},
+  {img:"images/decors/decors03.jpg", cat:"Decors", style:"مراية في المكان الصح", val:"مراية كبيرة توسّع الأوضة وتضاعف الإضاءة"},
+  {img:"images/decors/decors04.jpg", cat:"Decors", style:"أباجورة تغيّر إحساس البيت", val:"أباجورة واحدة بإضاءة دافئة تقلب مود البيت بالليل"},
+  {img:"images/decors/decors05.jpg", cat:"Decors", style:"ركن قراءة خاص بيك", val:"كرسي مريح وإضاءة ورف كتب يبقوا ركنك الخاص"},
+  {img:"images/decors/decors06.jpg", cat:"Decors", style:"3 ألوان بس في المكان", val:"قاعدة 3 ألوان تخلي المكان متناسق من غير دوشة"},
+  {img:"images/decors/decors07.jpg", cat:"Decors", style:"مخدات وفازة بلمسة محسوبة", val:"تفاصيل صغيرة محسوبة تخلي المكان يبان متصمم مش متجمع"},
+  {img:"images/decors/decors08.jpg", cat:"Decors", style:"برواز واحد في المكان الصح", val:"برواز واحد مظبوط أحسن من حيطة مليانة براويز"},
+  {img:"images/decors/decors09.jpg", cat:"Decors", style:"ركن بخور وشمعة", val:"ركن صغير للبخور والشمعة يدي إحساس بالبيت أول ما تدخل"},
+  {img:"images/decors/decors10.jpg", cat:"Decors", style:"ديكور شكله حلو وليه استخدام", val:"كل قطعة ديكور ليها وظيفة مش شكل بس"},
+  {img:"images/decors/decors11.jpg", cat:"Decors", style:"خامات طبيعية تهدي المكان", val:"خشب وقماش طبيعي يهدّوا المكان ويخلوه مريح"},
+  {img:"images/decors/decors12.jpg", cat:"Decors", style:"ديكور يتغير من غير تكسير", val:"قطع تتغير وتتبدل من غير ما تكسر ولا تدهن"},
+  {img:"images/decors/decors13.jpg", cat:"Decors", style:"ركن قهوة يخلي الصبح أحلى", val:"ركن صغير للقهوة يخلي بداية اليوم أحلى"},
+  {img:"images/decors/decors14.jpg", cat:"Decors", style:"أقل تفاصيل = شكل أرقى", val:"بساطة مدروسة تخلي المكان يبان أرقى وأغلى"},
+  {img:"images/decors/decors15.jpg", cat:"Decors", style:"ديكور يخليك مرتاح", val:"توزيع يخليك مرتاح في بيتك مش متوتر من الزحمة"},
 
         // Partitions
-  {img:"images/partitions/partitions01.jpg", cat:"Partitions", style:"فصل بدون خنقة", val:"يفصل وفي نفس الوقت النور معدي"},
-  {img:"images/partitions/partitions02.jpg", cat:"Partitions", style:"خصوصية + وسع", val:"خصوصية من غير ما تقفل الشقة"},
-  {img:"images/partitions/partitions03.jpg", cat:"Partitions", style:"شرائح تسمح بالنور", val:"شرائح بفراغات تعدي الضوء"},
-  {img:"images/partitions/partitions04.jpg", cat:"Partitions", style:"قاطوع + تخزين", val:"قاطوع فيه أرفف يستغل المساحة"},
-  {img:"images/partitions/partitions05.jpg", cat:"Partitions", style:"فصل مرن", val:"قاطوع يتحرك لو حبيت تغير التقسيمة"},
-  {img:"images/partitions/partitions06.jpg", cat:"Partitions", style:"بدون بناء", val:"تركيب بدون طوب ولا تكسير"},
-  {img:"images/partitions/partitions07.jpg", cat:"Partitions", style:"شكل يزين", val:"القاطوع نفسه بقى قطعة ديكور"},
-  {img:"images/partitions/partitions08.jpg", cat:"Partitions", style:"فصل صوتي هادي", val:"يقلل الصوت بين القعدتين"},
-  {img:"images/partitions/partitions09.jpg", cat:"Partitions", style:"إضاءة في القاطوع", val:"ليد جوه القاطوع ينور بالليل"},
-  {img:"images/partitions/partitions10.jpg", cat:"Partitions", style:"تقسيم ذكي", val:"ريسبشن يتقسم قعدتين بدون ما يضيق"},
-  {img:"images/partitions/partitions11.jpg", cat:"Partitions", style:"خامة خفيفة", val:"قاطوع خفيف مش محمل على السقف"},
-  {img:"images/partitions/partitions12.jpg", cat:"Partitions", style:"تناسق مع البيت", val:"نفس خشب ودهان باقي الشقة"},
-  {img:"images/partitions/partitions13.jpg", cat:"Partitions", style:"فصل مكتب", val:"ركن شغل مفصول عن دوشة البيت"},
-  {img:"images/partitions/partitions14.jpg", cat:"Partitions", style:"شكل عصري", val:"خطوط طولية وشكل مودرن"},
-  {img:"images/partitions/partitions15.jpg", cat:"Partitions", style:"يتنفذ بسرعة", val:"تركيب في يومين بدون بهدلة"},
+  {img:"images/partitions/partitions01.jpg", cat:"Partitions", style:"يفصل والنور معدي", val:"قاطوع بفراغات يفصل القعدتين والنور لسه معدي بينهم"},
+  {img:"images/partitions/partitions02.jpg", cat:"Partitions", style:"خصوصية من غير ما تقفل الشقة", val:"قاطوع يدي خصوصية من غير ما يقفل الشقة ويخنقها"},
+  {img:"images/partitions/partitions03.jpg", cat:"Partitions", style:"شرائح بفراغات تعدي الضوء", val:"شرائح بفراغات محسوبة تعدي الضوء والهوا"},
+  {img:"images/partitions/partitions04.jpg", cat:"Partitions", style:"قاطوع فيه أرفف", val:"قاطوع بأرفف يستغل المساحة بدل ما يبقى حيطة ميتة"},
+  {img:"images/partitions/partitions05.jpg", cat:"Partitions", style:"قاطوع يتحرك", val:"قاطوع مرن يتحرك لو حبيت تغيّر التقسيمة بعدين"},
+  {img:"images/partitions/partitions06.jpg", cat:"Partitions", style:"تركيب بدون طوب ولا تكسير", val:"تركيب خفيف على الأرض والسقف من غير طوب ولا بهدلة"},
+  {img:"images/partitions/partitions07.jpg", cat:"Partitions", style:"القاطوع نفسه قطعة ديكور", val:"القاطوع متصمم يبقى قطعة ديكور مش مجرد فاصل"},
+  {img:"images/partitions/partitions08.jpg", cat:"Partitions", style:"يقلل الصوت بين القعدتين", val:"خامة تقلل الصوت بين القعدتين من غير ما تقفل المكان"},
+  {img:"images/partitions/partitions09.jpg", cat:"Partitions", style:"ليد جوه القاطوع", val:"إضاءة مخفية جوه القاطوع تنوّر بالليل وتعمل شكل حلو"},
+  {img:"images/partitions/partitions10.jpg", cat:"Partitions", style:"ريسبشن يتقسم قعدتين", val:"ريسبشن كبير يتقسم قعدتين من غير ما يضيق"},
+  {img:"images/partitions/partitions11.jpg", cat:"Partitions", style:"قاطوع خفيف مش محمل", val:"خامة خفيفة مش محملة على السقف ولا الأرض"},
+  {img:"images/partitions/partitions12.jpg", cat:"Partitions", style:"نفس خشب ودهان باقي الشقة", val:"القاطوع بنفس خامات ودهان الشقة فيبان أصلي مش مضاف"},
+  {img:"images/partitions/partitions13.jpg", cat:"Partitions", style:"ركن شغل مفصول عن دوشة البيت", val:"ركن شغل مفصول بقاطوع يخليك تركز من غير دوشة"},
+  {img:"images/partitions/partitions14.jpg", cat:"Partitions", style:"خطوط طولية وشكل مودرن", val:"تصميم بخطوط طولية يدي شكل مودرن ونضيف"},
+  {img:"images/partitions/partitions15.jpg", cat:"Partitions", style:"تركيب في يومين", val:"القاطوع يتركب في يومين من غير بهدلة ولا تعطيل للبيت"},
 
 ];
 let favs = JSON.parse(localStorage.getItem('farida_favs')||'[]');
@@ -306,7 +297,7 @@ function shareDesign(code, cat, img){
   else window.open(url,'_blank');
 }
 function sendFavs(){
-  if(!favs.length){ alert('لسه مفيش مفضلة، دوس ❤️ على أي تصميم يعجبك'); return; }
+  if(!favs.length){ alert('لسه مفيش مفضلة، دوس ⭐ على أي تصميم يعجبك'); return; }
   let msg = 'مرحبا Farida Decor - دي التصميمات اللي عجبتني:\n' + favs.join('\n');
   window.open('https://wa.me/201065871712?text='+encodeURIComponent(msg),'_blank');
 }
@@ -326,8 +317,22 @@ function showLight(){ let item=lightList[lightIndex]; if(!item) return; document
 function lightStep(dir){ lightIndex=(lightIndex+dir+lightList.length)%lightList.length; showLight(); }
 let quizAns={};
 function quizPick(btn,key,val){ quizAns[key]=val; btn.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('sel')); btn.classList.add('sel'); }
-function runQuiz(){ let chosen=[]; if(quizAns.mat) chosen=designs.filter(d=>d.val.includes(quizAns.mat)).slice(0,6); if(!chosen.length) chosen=designs.slice(0,6); let html=chosen.map(d=>{ let idx=designs.indexOf(d); let code='FD-'+String(idx+1).padStart(3,'0'); return `<div><img src="${d.img}" style="width:100%;height:120px;object-fit:cover;border-radius:10px"><div style="color:#fff;font-size:13px">${d.cat} - ${d.style}</div><div style="color:#aaa;font-size:12px">${code}</div></div>`; }).join(''); document.getElementById('quizResult').innerHTML='<b style="color:#D4AF37">ترشيحاتنا ليك:</b><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">'+html+'</div>'; }
-function sendBooking(){ let n=document.getElementById('bName').value||'', ph=document.getElementById('bPhone').value||'', area=document.getElementById('bArea').value||'', ty=document.getElementById('bType').value||'', dt=document.getElementById('bDate').value||''; if(!n||!ph){ alert('اكتب اسمك ورقم الواتساب'); return; } let msg='حجز معاينة مجانية\nالاسم: '+n+'\nالرقم: '+ph+'\nالمنطقة: '+area+'\nالنوع: '+ty+'\nاليوم: '+dt; window.open('https://wa.me/201065871712?text='+encodeURIComponent(msg),'_blank'); }
+function runQuiz(){
+  let MAT_MAP={'خشب':['خشب','خشبي'],'رخام':['رخام'],'حجر':['حجر'],'حجر + خشب':['حجر','خشب'],'رخام + خشب':['رخام','خشب'],'رخام + حجر':['رخام','حجر'],'طبيعية':['طبيع','خشب','حجر'],'معدن + زجاج':['معدن','زجاج']};
+  let COLOR_MAP={'فاتح':['فاتح','هادي','ناعم','مريح'],'دافئ':['دافئ','دافي','ذهبي','بيج'],'غامق':['غامق','داكن','فخم','جريء']};
+  let scored=designs.map((d,i)=>{ let score=0, why=[];
+    if(quizAns.cat && quizAns.cat!=='OTHER' && d.cat===quizAns.cat){ score+=4; why.push(d.cat); }
+    if(quizAns.mat){ let kws=MAT_MAP[quizAns.mat]||[quizAns.mat]; let txt=(d.val+' '+d.style+' '+d.cat); let hits=kws.filter(k=>txt.includes(k)); score+=hits.length*3; if(hits.length) why.push(quizAns.mat); }
+    if(quizAns.color){ let kws=COLOR_MAP[quizAns.color]||[]; let txt=(d.val+' '+d.style); let hits=kws.filter(k=>txt.includes(k)); score+=hits.length*2; if(hits.length) why.push('ألوان '+quizAns.color); }
+    return {d,idx:i,score,why}; });
+  scored.sort((a,b)=>b.score-a.score || a.idx-b.idx);
+  let chosen=scored.slice(0,6);
+  let html=chosen.map(({d,idx,score,why})=>{ let code='FD-'+String(idx+1).padStart(3,'0'); return `<div style="cursor:pointer" onclick="closeModal('quizModal');openLightByCode('${code}')"><img src="${d.img}" style="width:100%;height:120px;object-fit:cover;border-radius:10px"><div style="color:#fff;font-size:13px">${d.cat} - ${d.style}</div><div style="color:#aaa;font-size:12px">${code} ${why.length?'• '+why.join(' + '):''}</div><div style="color:#D4AF37;font-size:11px">نسبة التطابق: ${score?Math.min(100,40+score*10):40}%</div></div>`; }).join('');
+  document.getElementById('quizResult').innerHTML='<b style="color:#D4AF37">ترشيحاتنا ليك حسب اختياراتك:</b><div style="color:#aaa;font-size:12px">دوس على أي تصميم عشان تشوفه كامل</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">'+html+'</div>';
+}
+let bookCat='BedRooms';
+function bookPick(btn,val){ bookCat=val; btn.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('sel')); btn.classList.add('sel'); }
+function sendBooking(){ let n=document.getElementById('bName').value||'', area=document.getElementById('bArea').value||'', code=(document.getElementById('bCode').value||'').trim().toUpperCase(), undecided=document.getElementById('bUndecided').checked, dt=document.getElementById('bDate').value||''; if(!n){ alert('اكتب اسمك'); return; } if(!undecided && code && !/^FD-[0-9]{3}$/.test(code)){ alert('اكتب الكود بالشكل ده: FD-001 أو اختار لسه مقررتش'); return; } let msg='حجز معاينة مجانية\nالاسم: '+n+'\nالمنطقة: '+area+'\nالقسم: '+bookCat+'\nكود التصميم: '+(undecided?'لسه مقررتش تصميم معين - ساعدوني أختار':(code||'مش محدد'))+'\nاليوم: '+dt; window.open('https://wa.me/201065871712?text='+encodeURIComponent(msg),'_blank'); }
 function render(cat){
   let h=""; currentVisible=[];
   designs.forEach((d,i)=>{
@@ -337,10 +342,10 @@ function render(cat){
       if(favOnly && !isFav(code)) return;
       currentVisible.push({d, code, idx:i});
       let imgUrl = d.img.includes('http') ? d.img : d.img.includes('.jpg') || d.img.includes('.png') ? d.img : 'https://images.unsplash.com/photo-'+d.img+'?w=800&q=80';
-      h+=`<div class="card"><div class="card-top"><img src="${imgUrl}" style="cursor:zoom-in" onclick="openLightByCode('${code}')"><button class="favbtn ${isFav(code)?'on':''}" onclick="toggleFav('${code}',this)" title="أضف للمفضلة">${isFav(code)?'❤️':'🤍'}</button><button class="sharebtn" onclick="shareDesign('${code}','${d.cat}','${d.img}')" title="مشاركة">📤</button></div><div class="card-b"><span class="badge">${d.style}</span><div style="font-weight:900;margin-top:6px">تصميم ${d.cat}</div><div class="value">${d.val}</div><div class="code">كود: ${code} • ${d.cat}</div><div class="card-actions"><button class="cta" onclick="window.open('https://wa.me/201065871712?text='+encodeURIComponent('مرحبا Farida Decor - عايز استفسر عن ${code}'))">لحساب تكلفة وحدتك مجاناً تواصل معنا</button><button class="cta" style="background:#D4AF37;color:#140E08" onclick="toggleCompare('${code}')">قارن</button></div></div></div>`;
+      h+=`<div class="card"><div class="card-top"><img src="${imgUrl}" style="cursor:zoom-in" onclick="openLightByCode('${code}')"></div><div class="card-b"><span class="badge">${d.style}</span><div style="font-weight:900;margin-top:6px">تصميم ${d.cat}</div><div class="value">${d.val}</div><div class="code">كود: ${code}</div><div class="card-tools"><button class="favbtn ${isFav(code)?'on':''}" onclick="toggleFav('${code}',this)" title="أضف للمفضلة">${isFav(code)?'⭐ محفوظة':'☆ أضف للمفضلة'}</button><button class="sharebtn" onclick="shareDesign('${code}','${d.cat}','${d.img}')" title="مشاركة">📤 مشاركة</button></div><div class="card-actions"><button class="cta" onclick="window.open('https://wa.me/201065871712?text='+encodeURIComponent('مرحبا Farida Decor - عايز استفسر عن ${code}'))">لحساب تكلفة وحدتك مجاناً تواصل معنا</button><button class="cta" style="background:#D4AF37;color:#140E08" onclick="toggleCompare('${code}')">قارن</button></div></div></div>`;
     }
   });
-  if(favOnly && !h) h = '<div style="padding:20px;color:#fff">لسه مفيش مفضلة، دوس ❤️ على أي تصميم وهيظهر هنا</div>';
+  if(favOnly && !h) h = '<div style="padding:20px;color:#fff">لسه مفيش مفضلة، دوس ⭐ على أي تصميم وهيظهر هنا</div>';
   document.getElementById('grid').innerHTML=h;
   updateFavUI();
 }
@@ -368,7 +373,7 @@ function runAdvancedSearch(){
   if(!filtered.length){ document.getElementById('advResult').innerHTML='مفيش نتايج مطابقة، جرب توسّع البحث'; return; }
   // اعرض النتايج في الجريد
   let h=""; currentVisible=[];
-  filtered.forEach(d=>{ let i=designs.indexOf(d); let c='FD-'+String(i+1).padStart(3,'0'); currentVisible.push({d,code:c,idx:i}); let imgUrl=d.img.includes('http')?d.img:(d.img.includes('.jpg')||d.img.includes('.png')?d.img:'https://images.unsplash.com/photo-'+d.img+'?w=800&q=80'); h+=`<div class="card"><div class="card-top"><img src="${imgUrl}" style="cursor:zoom-in" onclick="openLightByCode('${c}')"><button class="favbtn ${isFav(c)?'on':''}" onclick="toggleFav('${c}',this)">${isFav(c)?'❤️':'🤍'}</button><button class="sharebtn" onclick="shareDesign('${c}','${d.cat}','${d.img}')">📤</button></div><div class="card-b"><span class="badge">${d.style}</span><div style="font-weight:900;margin-top:6px">تصميم ${d.cat}</div><div class="value">${d.val}</div><div class="code">كود: ${c} • ${d.cat}</div><div class="card-actions"><button class="cta" onclick="window.open('https://wa.me/201065871712?text='+encodeURIComponent('مرحبا Farida Decor - عايز استفسر عن ${c}'))">لحساب تكلفة وحدتك مجاناً تواصل معنا</button><button class="cta" style="background:#D4AF37;color:#140E08" onclick="toggleCompare('${c}')">قارن</button></div></div></div>`; });
+  filtered.forEach(d=>{ let i=designs.indexOf(d); let c='FD-'+String(i+1).padStart(3,'0'); currentVisible.push({d,code:c,idx:i}); let imgUrl=d.img.includes('http')?d.img:(d.img.includes('.jpg')||d.img.includes('.png')?d.img:'https://images.unsplash.com/photo-'+d.img+'?w=800&q=80'); h+=`<div class="card"><div class="card-top"><img src="${imgUrl}" style="cursor:zoom-in" onclick="openLightByCode('${c}')"></div><div class="card-b"><span class="badge">${d.style}</span><div style="font-weight:900;margin-top:6px">تصميم ${d.cat}</div><div class="value">${d.val}</div><div class="code">كود: ${c}</div><div class="card-tools"><button class="favbtn ${isFav(c)?'on':''}" onclick="toggleFav('${c}',this)">${isFav(c)?'⭐ محفوظة':'☆ أضف للمفضلة'}</button><button class="sharebtn" onclick="shareDesign('${c}','${d.cat}','${d.img}')">📤 مشاركة</button></div><div class="card-actions"><button class="cta" onclick="window.open('https://wa.me/201065871712?text='+encodeURIComponent('مرحبا Farida Decor - عايز استفسر عن ${c}'))">لحساب تكلفة وحدتك مجاناً تواصل معنا</button><button class="cta" style="background:#D4AF37;color:#140E08" onclick="toggleCompare('${c}')">قارن</button></div></div></div>`; });
   document.getElementById('grid').innerHTML=h; updateFavUI();
   document.getElementById('advResult').innerHTML='لقيت <b style="color:#D4AF37">'+filtered.length+'</b> تصميم';
   closeModal('advModal'); document.getElementById('grid').scrollIntoView({behavior:'smooth'});
