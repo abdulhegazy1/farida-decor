@@ -23,11 +23,54 @@ header{background:#140E08;padding:12px 18px;display:flex;justify-content:space-b
 footer{background:#0D0905;padding:24px 18px;display:grid;grid-template-columns:1fr 1fr;gap:20px;border-top:1px solid #2a1e12}
 footer h3{color:#D4AF37;margin-bottom:8px}footer div{color:#ddd;line-height:2;font-size:14px}
 @media(max-width:768px){header{padding:8px 12px}.tagline{display:none}.hero{grid-template-columns:1fr;padding:12px}.hero h1{font-size:32px}.hero img{height:260px}.grid{grid-template-columns:repeat(2,1fr);gap:10px;padding:0 10px 20px}.card img{height:140px}}
+
+.reels-box{
+  position:relative;
+  width:100%;
+  height:420px;
+  border-radius:14px;
+  overflow:hidden;
+  background:#000;
+}
+.reels-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:opacity .4s ease, transform 2s ease;
+}
+.reels-box img.fade{
+  opacity:0;
+  transform:scale(1.05);
+}
+.reels-label{
+  position:absolute; top:12px; right:12px;
+  background:#FFD700; color:#000;
+  padding:6px 12px; border-radius:20px;
+  font-weight:900; font-size:13px;
+}
+.reels-count{
+  position:absolute; bottom:14px; left:12px;
+  background:rgba(0,0,0,.6); color:#fff;
+  padding:4px 10px; border-radius:20px; font-size:13px;
+}
+.reels-progress{
+  position:absolute; bottom:0; right:0; left:0; height:4px;
+  background:rgba(255,255,255,.3);
+}
+.reels-progress span{
+  display:block; height:100%; width:0%;
+  background:#FFD700; transition:width 2s linear;
+}
 </style></head>
 <body>
 <header><div><div class="logo-en">FARIDA <span>DECOR</span></div><div class="logo-ar">فريدة ديكور</div><div class="tagline">فن التصميم ممزوج بتشطيبات عالمية</div></div>
 <div class="socials"><a class="wa" href="https://wa.me/201065871712" target="_blank">✆</a><a class="fb" href="https://www.facebook.com/share/1H3A31Ah62/" target="_blank">f</a><a class="ig" href="#" target="_blank">◎</a><button class="btn">تصفح الكتالوج</button></div></header>
-<section class="hero"><div><h1>FARIDA <span>DECOR</span></h1><div class="ruqaa">لمسة من الإبداع</div><p>جميع التصميمات المعروضة نماذج تصورية وأفكار إبداعية توضح إمكانياتنا في تصميم وتنفيذ الديكورات. يمكن تخصيص التصميمات وفقاً لمساحة العميل وذوقه واختياراته.</p><br><button class="btn">شاهد التصاميم</button> <button class="btn" style="background:#25D366;color:#fff">اسألنا على واتساب</button></div><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=80"></section>
+<section class="hero"><div><h1>FARIDA <span>DECOR</span></h1><div class="ruqaa">لمسة من الإبداع</div><p>جميع التصميمات المعروضة نماذج تصورية وأفكار إبداعية توضح إمكانياتنا في تصميم وتنفيذ الديكورات. يمكن تخصيص التصميمات وفقاً لمساحة العميل وذوقه واختياراته.</p><br><button class="btn">شاهد التصاميم</button> <button class="btn" style="background:#25D366;color:#fff">اسألنا على واتساب</button></div><<div class="reels-box">
+  <img id="reelsImg" src="" alt="تصميمات فريدة ديكور">
+  <div class="reels-label">🔥 أحدث تصميماتنا</div>
+  <div class="reels-progress"><span id="reelsBar"></span></div>
+  <div class="reels-count"><span id="reelsNum">1</span> / <span id="reelsTotal">0</span></div>
+</div></section>
 <div class="pills"><button class="active">الكل</button><button>BedRooms</button><button>Kids Rooms</button><button>Living</button><button>TV Units</button><button>Walls</button><button>Shops</button><button>Kitchens</button><button>Partitions</button><button>Decors</button></div>
 <div class="grid" id="grid"></div>
 <footer><div><h3>الأقسام</h3><div>BedRooms • Kids Rooms • Living • TV Units • Walls • Shops • Kitchens • Partitions • Decors</div><div style="margin-top:12px;color:#D4AF37">© FARIDA DECOR — علامة تجارية من ذهب</div></div><div><h3>تواصل معنا</h3><div>لحساب تكلفة وحدتك مجاناً تواصل معنا</div><div>بإشراف وتنفيذ فريق من المهندسين المتخصصين</div></div></footer>
@@ -35,21 +78,21 @@ footer h3{color:#D4AF37;margin-bottom:8px}footer div{color:#ddd;line-height:2;fo
 const designs = [
 
         // BedRooms
-  {img:"images/bedrooms/ bedrooms01.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
-  {img:"images/bedrooms/ bedrooms02.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
-  {img:"images/bedrooms/ bedrooms03.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
-  {img:"images/bedrooms/ bedrooms04.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
-  {img:"images/bedrooms/ bedrooms05.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
-  {img:"images/bedrooms/ bedrooms06.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
-  {img:"images/bedrooms/ bedrooms07.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
-  {img:"images/bedrooms/ bedrooms08.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
-  {img:"images/bedrooms/ bedrooms09.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
-  {img:"images/bedrooms/ bedrooms10.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
-  {img:"images/bedrooms/ bedrooms11.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
-  {img:"images/bedrooms/ bedrooms12.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
-  {img:"images/bedrooms/ bedrooms13.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
-  {img:"images/bedrooms/ bedrooms14.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
-  {img:"images/bedrooms/ bedrooms15.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
+  {img:"images/bedrooms/bedrooms01.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
+  {img:"images/bedrooms/bedrooms02.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
+  {img:"images/bedrooms/bedrooms03.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
+  {img:"images/bedrooms/bedrooms04.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
+  {img:"images/bedrooms/bedrooms05.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
+  {img:"images/bedrooms/bedrooms06.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
+  {img:"images/bedrooms/bedrooms07.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
+  {img:"images/bedrooms/bedrooms08.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
+  {img:"images/bedrooms/bedrooms09.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
+  {img:"images/bedrooms/bedrooms10.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
+  {img:"images/bedrooms/bedrooms11.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
+  {img:"images/bedrooms/bedrooms12.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
+  {img:"images/bedrooms/bedrooms13.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
+  {img:"images/bedrooms/bedrooms14.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
+  {img:"images/bedrooms/bedrooms15.jpg", cat:"BedRooms", style:"دافئ", val:"فخامة بدون تكلف"},
 
 
         // Kids Rooms
@@ -212,4 +255,40 @@ document.querySelectorAll('.pills button').forEach(b=>{
     render(b.textContent.trim());
   }
 });
+// ===== Reels Auto Slideshow - كل 2 ثانية =====
+const reelsImg = document.getElementById('reelsImg');
+const reelsBar = document.getElementById('reelsBar');
+const reelsNum = document.getElementById('reelsNum');
+const reelsTotal = document.getElementById('reelsTotal');
+
+// هنا بنجيب صور التصميمات من نفس الداتا بتاعتك
+// لو اسم المصفوفة عندك مختلف، غير كلمة designs بس
+const reelsImages = designs.map(d => d.img); // أو d.image حسب اسم الحقل عندك
+
+let reelsIndex = 0;
+
+function showReel(i){
+  reelsImg.classList.add('fade');
+  setTimeout(()=>{
+    reelsImg.src = reelsImages[i];
+    reelsImg.classList.remove('fade');
+    reelsNum.textContent = i + 1;
+    reelsBar.style.transition = 'none';
+    reelsBar.style.width = '0%';
+    // عشان شريط التقدم يتحرك مع الـ 2 ثانية
+    requestAnimationFrame(()=>{
+      reelsBar.style.transition = 'width 2s linear';
+      reelsBar.style.width = '100%';
+    });
+  }, 300);
+}
+
+if(reelsImages.length > 0){
+  reelsTotal.textContent = reelsImages.length;
+  showReel(0);
+  setInterval(()=>{
+    reelsIndex = (reelsIndex + 1) % reelsImages.length;
+    showReel(reelsIndex);
+  }, 2000); // <-- غير الرقم ده لو عايز أسرع أو أبطأ، 2000 = ثانيتين
+}
 </script></body></html>
