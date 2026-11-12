@@ -46,7 +46,7 @@ function render(cat){
   designs.forEach((d,i)=>{
     if(cat==="الكل" || d.cat===cat){
       let n = String(i+1).padStart(3,'0');
-      h+=`<div class="card"><img src="${d.img.includes('http') ? d.img : d.img.includes('.jpg') || d.img.includes('.png') ? d.img : 'https://images.unsplash.com/photo-'+d.img+'?w=800&q=80'}"><div class="card-b"><span class="badge">${d.style}</span><div style="font-weight:900;margin-top:6px">تصميم ${d.cat} - ${i+1}</div><div class="value">${d.val}</div><div class="code">كود: FD-${n} • ${d.cat}</div><button class="cta" onclick="window.open('https://wa.me/201065871712?text='+encodeURIComponent('مرحبا Farida Decor - عايز استفسر عن FD-${n}'))">لحساب تكلفة وحدتك مجاناً تواصل معنا</button></div></div>`;
+      h+=`<div class="card"><img src="${d.img.includes('http') ? d.img : d.img.includes('.jpg') || d.img.includes('.png') ? d.img : 'https://images.unsplash.com/photo-'+d.img+'?w=800&q=80'}"><div class="card-b"><span class="badge">${d.style}</span><div style="font-weight:900;margin-top:6px">تصميم ${d.cat}</div><div class="value">${d.val}</div><div class="code">كود: FD-${n} • ${d.cat}</div><button class="cta" onclick="window.open('https://wa.me/201065871712?text='+encodeURIComponent('مرحبا Farida Decor - عايز استفسر عن FD-${n}'))">لحساب تكلفة وحدتك مجاناً تواصل معنا</button></div></div>`;
     }
   });
   document.getElementById('grid').innerHTML=h;
