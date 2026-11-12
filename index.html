@@ -63,14 +63,6 @@ footer h3{color:#D4AF37;margin-bottom:8px}footer div{color:#ddd;line-height:2;fo
   background:#FFD700; transition:width 2s linear;
 }
 
-/* ===== Features 1+2+5 ===== */
-.calc{background:#1F160D;border:1px solid #D4AF37;border-radius:16px;padding:18px;margin:0 18px 18px}
-.calc h2{color:#D4AF37;font-size:22px;margin-bottom:4px}.calc p{color:#E8DCC8;font-size:13px;margin-bottom:14px}
-.calc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.calc-grid label{font-size:12px;color:#ccc;display:block;margin-bottom:4px}
-.calc-grid select,.calc-grid input{width:100%;padding:11px;border-radius:10px;border:1px solid #3a2c1c;background:#140E08;color:#fff;font-family:inherit}
-.calc-result{margin-top:14px;background:#140E08;border:1px dashed #D4AF37;border-radius:12px;padding:14px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.calc-result b{color:#D4AF37;font-size:22px}
 .favbar{display:flex;gap:8px;align-items:center;padding:0 18px 12px;flex-wrap:wrap}
 .favbar button{background:#2A1E12;color:#fff;border:1px solid #3a2c1c;padding:8px 14px;border-radius:999px;cursor:pointer}
 .favbar button.active{background:#E1306C;color:#fff;border-color:#E1306C}
@@ -80,6 +72,29 @@ footer h3{color:#D4AF37;margin-bottom:8px}footer div{color:#ddd;line-height:2;fo
 .sharebtn{position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:50%;border:0;cursor:pointer;background:rgba(0,0,0,.6);color:#fff;font-size:16px}
 .card-actions{display:flex;gap:8px;margin-top:10px}.card-actions .cta{margin-top:0}
 @media(max-width:768px){.calc{margin:0 10px 14px}.calc-grid{grid-template-columns:1fr 1fr}.calc-result{flex-direction:column;align-items:flex-start}}
+
+/* ===== 5 New Features ===== */
+.colorbar{display:flex;gap:8px;flex-wrap:wrap;padding:0 18px 12px}
+.colorbar button{padding:8px 14px;border-radius:999px;border:1px solid #3a2c1c;background:#2A1E12;color:#fff;cursor:pointer}
+.colorbar button.active{background:#D4AF37;color:#140E08}
+.top-actions{display:flex;gap:8px;flex-wrap:wrap;padding:0 18px 12px}
+.top-actions button{background:#D4AF37;color:#140E08;border:0;padding:10px 16px;border-radius:999px;font-weight:800;cursor:pointer}
+.top-actions button.ghost{background:#2A1E12;color:#fff;border:1px solid #3a2c1c}
+.comparebar{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);background:#D4AF37;color:#140E08;padding:10px 16px;border-radius:999px;font-weight:800;z-index:90;display:none;gap:10px;align-items:center}
+.comparebar button{background:#140E08;color:#fff;border:0;padding:7px 12px;border-radius:999px;cursor:pointer}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;place-items:center;z-index:100;padding:16px}
+.modal.open{display:grid}
+.modal-box{background:#1F160D;border:1px solid #D4AF37;border-radius:16px;padding:18px;max-width:900px;width:100%;max-height:92vh;overflow:auto;position:relative}
+.modal-box .close{position:absolute;top:10px;left:10px;width:36px;height:36px;border-radius:50%;border:0;background:#D4AF37;cursor:pointer;font-size:18px}
+.lightbox-img{width:100%;max-height:72vh;object-fit:contain;border-radius:12px;cursor:zoom-in}
+.lightbox-img.zoom{transform:scale(1.8);cursor:zoom-out}
+.lb-nav{display:flex;justify-content:space-between;margin-top:10px}
+.lb-nav button{background:#D4AF37;border:0;padding:9px 14px;border-radius:999px;font-weight:800;cursor:pointer}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.compare-grid img{width:100%;height:260px;object-fit:cover;border-radius:12px}
+.quiz-q{margin:12px 0}.quiz-q b{display:block;margin-bottom:8px}.quiz-q button{margin:4px;background:#2A1E12;color:#fff;border:1px solid #3a2c1c;padding:9px 13px;border-radius:999px;cursor:pointer}.quiz-q button.sel{background:#D4AF37;color:#140E08}
+.book-form{display:grid;gap:10px}.book-form input,.book-form select{padding:12px;border-radius:10px;border:1px solid #3a2c1c;background:#140E08;color:#fff;font-family:inherit}
+@media(max-width:768px){.compare-grid{grid-template-columns:1fr}.compare-grid img{height:200px}}
 </style></head>
 <body>
 <header class="topbar">
@@ -96,18 +111,14 @@ footer h3{color:#D4AF37;margin-bottom:8px}footer div{color:#ddd;line-height:2;fo
   <div class="reels-progress"><span id="reelsBar"></span></div>
   <div class="reels-count"><span id="reelsNum">1</span> / <span id="reelsTotal">0</span></div>
 </div></section>
-<section class="calc" id="calc">
-  <h2>🧮 احسب تكلفة وحدتك في دقيقة</h2>
-  <p>اختار النوع والمساحة والخامة، وهيطلعلك سعر تقريبي، وتبعتهولنا على واتساب جاهز.</p>
-  <div class="calc-grid">
-    <div><label>نوع الوحدة</label><select id="cType"><option value="BedRooms">غرفة نوم</option><option value="Living">ريسبشن / ليفنج</option><option value="TV Units">وحدة TV</option><option value="Kitchens">مطبخ</option><option value="Walls">حائط مميز</option><option value="Partitions">قاطوع</option><option value="Kids Rooms">غرفة أطفال</option><option value="Shops">محل</option><option value="Decors">ديكور</option></select></div>
-    <div><label>المساحة / الطول (متر)</label><input id="cSize" type="number" min="1" value="12" placeholder="مثال: 12"></div>
-    <div><label>الخامة</label><select id="cMat"><option value="1">بديل خشب</option><option value="1.25">بديل رخام</option><option value="1.15">بديل حجر</option><option value="1.5">ميكس خشب + رخام</option></select></div>
-    <div><label>مستوى التشطيب</label><select id="cLevel"><option value="1">اقتصادي</option><option value="1.3" selected>متوسط</option><option value="1.7">فاخر بسيط</option></select></div>
-  </div>
-  <div class="calc-result"><div><div style="font-size:12px;color:#aaa">سعر تقريبي</div><b id="cPrice">—</b><div style="font-size:12px;color:#aaa">السعر تقريبي ويتأكد بعد المعاينة المجانية</div></div><button class="btn" style="background:#25D366;color:#fff" onclick="sendQuote()">ابعت التسعيرة على واتساب 📩</button></div>
-</section>
 <div class="favbar"><button id="favFilterBtn" onclick="toggleFavOnly()">❤️ مفضلتي (<span id="favCount">0</span>)</button><button id="sendFavBtn" onclick="sendFavs()">ابعت المفضلة على واتساب</button><span id="favHint" style="font-size:12px;color:#aaa">دوس ❤️ على أي تصميم يعجبك وهيتحفظ هنا</span></div>
+<div class="top-actions"><button onclick="openModal('quizModal')">🎯 اختبر ستايلك</button><button class="ghost" onclick="openModal('bookModal')">📅 احجز معاينة مجانية</button></div>
+<div class="colorbar" id="colorBar"><button class="active" data-color="الكل" onclick="setColor(this)">كل الألوان</button><button data-color="بيج" onclick="setColor(this)">بيج</button><button data-color="رمادي" onclick="setColor(this)">رمادي</button><button data-color="خشبي" onclick="setColor(this)">خشبي</button><button data-color="أبيض" onclick="setColor(this)">أبيض</button><button data-color="غامق" onclick="setColor(this)">غامق</button></div>
+<div class="comparebar" id="compareBar"><span id="compareText">اخترت تصميم (0/2)</span><button onclick="showCompare()">قارن دلوقتي</button><button onclick="clearCompare()">مسح</button></div>
+<div class="modal" id="lightModal"><div class="modal-box"><button class="close" onclick="closeModal('lightModal')">✕</button><img class="lightbox-img" id="lightImg" onclick="this.classList.toggle('zoom')"><div class="lb-nav"><button onclick="lightStep(-1)">اللي قبله</button><span id="lightInfo" style="color:#fff"></span><button onclick="lightStep(1)">اللي بعده</button></div></div></div>
+<div class="modal" id="compareModal"><div class="modal-box"><button class="close" onclick="closeModal('compareModal')">✕</button><h2 style="color:#D4AF37">مقارنة بين تصميمين</h2><div class="compare-grid" id="compareGrid"></div></div></div>
+<div class="modal" id="quizModal"><div class="modal-box"><button class="close" onclick="closeModal('quizModal')">✕</button><h2 style="color:#D4AF37">إيه ستايلك؟</h2><p style="color:#ccc;font-size:13px">جاوب 3 أسئلة وهنرشحلك 6 تصميمات</p><div class="quiz-q"><b>1. بتحب الألوان؟</b><br><button onclick="quizPick(this,'color','فاتح')">فاتحة</button><button onclick="quizPick(this,'color','غامق')">غامقة</button></div><div class="quiz-q"><b>2. بتحب الخامة؟</b><br><button onclick="quizPick(this,'mat','خشب')">بديل خشب</button><button onclick="quizPick(this,'mat','رخام')">بديل رخام</button><button onclick="quizPick(this,'mat','حجر')">بديل حجر</button></div><div class="quiz-q"><b>3. شقتك؟</b><br><button onclick="quizPick(this,'size','صغيرة')">صغيرة</button><button onclick="quizPick(this,'size','كبيرة')">كبيرة</button></div><button class="btn" onclick="runQuiz()">اعرض ترشيحاتي</button><div id="quizResult" style="margin-top:14px"></div></div></div>
+<div class="modal" id="bookModal"><div class="modal-box"><button class="close" onclick="closeModal('bookModal')">✕</button><h2 style="color:#D4AF37">احجز معاينة مجانية</h2><div class="book-form"><input id="bName" placeholder="اسمك"><input id="bPhone" placeholder="رقم الواتساب"><input id="bArea" placeholder="المنطقة - مثال: الإسكندرية، سموحة"><select id="bType"><option>غرفة نوم</option><option>مطبخ</option><option>وحدة TV</option><option>ريسبشن كامل</option><option>محل</option><option>شقة كاملة</option></select><input id="bDate" type="date"><button class="btn" style="background:#25D366;color:#fff" onclick="sendBooking()">ابعت الحجز على واتساب</button></div></div></div>
 <div class="pills"><button class="active">الكل</button><button>BedRooms</button><button>Kids Rooms</button><button>Living</button><button>TV Units</button><button>Walls</button><button>Shops</button><button>Kitchens</button><button>Partitions</button><button>Decors</button></div>
 <div class="grid" id="grid"></div>
 <footer><div><h3>الأقسام</h3><div>BedRooms • Kids Rooms • Living • TV Units • Walls • Shops • Kitchens • Partitions • Decors</div><div style="margin-top:12px;color:#D4AF37">© FARIDA DECOR — علامة تجارية من ذهب</div></div><div><h3>تواصل معنا</h3><div>لحساب تكلفة وحدتك مجاناً تواصل معنا</div><div>بإشراف وتنفيذ فريق من المهندسين المتخصصين</div></div></footer>
@@ -302,36 +313,39 @@ function sendFavs(){
   let msg = 'مرحبا Farida Decor - دي التصميمات اللي عجبتني:\n' + favs.join('\n');
   window.open('https://wa.me/201065871712?text='+encodeURIComponent(msg),'_blank');
 }
-function sendQuote(){
-  let type = document.getElementById('cType').options[document.getElementById('cType').selectedIndex].text;
-  let size = document.getElementById('cSize').value || 0;
-  let mat = document.getElementById('cMat').options[document.getElementById('cMat').selectedIndex].text;
-  let lvl = document.getElementById('cLevel').options[document.getElementById('cLevel').selectedIndex].text;
-  let price = document.getElementById('cPrice').textContent;
-  let msg = 'مرحبا Farida Decor - عايز تسعيرة:\nالنوع: '+type+'\nالمساحة: '+size+' متر\nالخامة: '+mat+'\nالمستوى: '+lvl+'\nالسعر التقريبي: '+price;
-  window.open('https://wa.me/201065871712?text='+encodeURIComponent(msg),'_blank');
-}
-function calcPrice(){
-  const base = {BedRooms:2800, Living:3200, 'TV Units':4500, Kitchens:5500, Walls:1800, Partitions:2200, 'Kids Rooms':2600, Shops:3800, Decors:1200};
-  let type = document.getElementById('cType').value;
-  let size = parseFloat(document.getElementById('cSize').value||0);
-  let mat = parseFloat(document.getElementById('cMat').value||1);
-  let lvl = parseFloat(document.getElementById('cLevel').value||1);
-  let total = Math.round(size * (base[type]||2500) * mat * lvl);
-  let low = Math.round(total*0.9), high = Math.round(total*1.1);
-  document.getElementById('cPrice').textContent = size>0 ? low.toLocaleString('ar-EG')+' - '+high.toLocaleString('ar-EG')+' ج.م' : '—';
-}
-['cType','cSize','cMat','cLevel'].forEach(id=>document.getElementById(id).addEventListener('input', calcPrice));
-calcPrice();
+
+let colorFilter='الكل';
+let compareList=[];
+let lightList=[], lightIndex=0;
+let currentVisible=[];
+const COLOR_MAP=['بيج','رمادي','خشبي','أبيض','غامق'];
+function getColor(d,i){ return COLOR_MAP[i % 5]; }
+function setColor(btn){ colorFilter=btn.dataset.color; document.querySelectorAll('#colorBar button').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); render(document.querySelector('.pills button.active')?.textContent.trim()||"الكل"); }
+function openModal(id){ document.getElementById(id).classList.add('open'); }
+function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{ if(e.target===m) m.classList.remove('open'); }));
+function toggleCompare(code){ if(compareList.includes(code)) compareList=compareList.filter(c=>c!==code); else { if(compareList.length>=2){ alert('اختار تصميمين بس'); return; } compareList.push(code); } updateCompareBar(); }
+function updateCompareBar(){ let bar=document.getElementById('compareBar'); document.getElementById('compareText').textContent='اخترت تصميم ('+compareList.length+'/2)'; bar.style.display=compareList.length?'flex':'none'; }
+function clearCompare(){ compareList=[]; updateCompareBar(); render(document.querySelector('.pills button.active')?.textContent.trim()||"الكل"); }
+function showCompare(){ if(compareList.length<2){ alert('اختار تصميمين'); return; } let items=compareList.map(code=>{ let idx=parseInt(code.split('-')[1])-1; return {code,d:designs[idx]}; }); document.getElementById('compareGrid').innerHTML=items.map(({code,d})=>`<div><img src="${d.img}"><h3 style="color:#fff;margin-top:8px">تصميم ${d.cat}</h3><div style="color:#D4AF37">${d.style}</div><div style="color:#ccc;font-size:13px">${d.val}</div><div style="color:#aaa;font-size:12px">كود: ${code}</div></div>`).join(''); openModal('compareModal'); }
+function openLightByCode(code){ lightList=currentVisible; lightIndex=lightList.findIndex(x=>x.code===code); if(lightIndex<0) lightIndex=0; showLight(); openModal('lightModal'); }
+function showLight(){ let item=lightList[lightIndex]; if(!item) return; document.getElementById('lightImg').src=item.d.img; document.getElementById('lightImg').classList.remove('zoom'); document.getElementById('lightInfo').textContent=(lightIndex+1)+' / '+lightList.length+' - '+item.code+' - '+item.d.cat; }
+function lightStep(dir){ lightIndex=(lightIndex+dir+lightList.length)%lightList.length; showLight(); }
+let quizAns={};
+function quizPick(btn,key,val){ quizAns[key]=val; btn.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('sel')); btn.classList.add('sel'); }
+function runQuiz(){ let chosen=[]; if(quizAns.mat) chosen=designs.filter(d=>d.val.includes(quizAns.mat)).slice(0,6); if(!chosen.length) chosen=designs.slice(0,6); let html=chosen.map(d=>{ let idx=designs.indexOf(d); let code='FD-'+String(idx+1).padStart(3,'0'); return `<div><img src="${d.img}" style="width:100%;height:120px;object-fit:cover;border-radius:10px"><div style="color:#fff;font-size:13px">${d.cat} - ${d.style}</div><div style="color:#aaa;font-size:12px">${code}</div></div>`; }).join(''); document.getElementById('quizResult').innerHTML='<b style="color:#D4AF37">ترشيحاتنا ليك:</b><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">'+html+'</div>'; }
+function sendBooking(){ let n=document.getElementById('bName').value||'', ph=document.getElementById('bPhone').value||'', area=document.getElementById('bArea').value||'', ty=document.getElementById('bType').value||'', dt=document.getElementById('bDate').value||''; if(!n||!ph){ alert('اكتب اسمك ورقم الواتساب'); return; } let msg='حجز معاينة مجانية\nالاسم: '+n+'\nالرقم: '+ph+'\nالمنطقة: '+area+'\nالنوع: '+ty+'\nاليوم: '+dt; window.open('https://wa.me/201065871712?text='+encodeURIComponent(msg),'_blank'); }
 function render(cat){
-  let h="";
+  let h=""; currentVisible=[];
   designs.forEach((d,i)=>{
     if(cat==="الكل" || d.cat===cat){
       let n = String(i+1).padStart(3,'0');
       let code = 'FD-'+n;
       if(favOnly && !isFav(code)) return;
+      if(colorFilter!=='الكل' && getColor(d,i)!==colorFilter) return;
+      currentVisible.push({d, code, idx:i});
       let imgUrl = d.img.includes('http') ? d.img : d.img.includes('.jpg') || d.img.includes('.png') ? d.img : 'https://images.unsplash.com/photo-'+d.img+'?w=800&q=80';
-      h+=`<div class="card"><div class="card-top"><img src="${imgUrl}"><button class="favbtn ${isFav(code)?'on':''}" onclick="toggleFav('${code}',this)" title="أضف للمفضلة">${isFav(code)?'❤️':'🤍'}</button><button class="sharebtn" onclick="shareDesign('${code}','${d.cat}','${d.img}')" title="مشاركة">📤</button></div><div class="card-b"><span class="badge">${d.style}</span><div style="font-weight:900;margin-top:6px">تصميم ${d.cat}</div><div class="value">${d.val}</div><div class="code">كود: ${code} • ${d.cat}</div><div class="card-actions"><button class="cta" onclick="window.open('https://wa.me/201065871712?text='+encodeURIComponent('مرحبا Farida Decor - عايز استفسر عن ${code}'))">لحساب تكلفة وحدتك مجاناً تواصل معنا</button></div></div></div>`;
+      h+=`<div class="card"><div class="card-top"><img src="${imgUrl}" style="cursor:zoom-in" onclick="openLightByCode('${code}')"><button class="favbtn ${isFav(code)?'on':''}" onclick="toggleFav('${code}',this)" title="أضف للمفضلة">${isFav(code)?'❤️':'🤍'}</button><button class="sharebtn" onclick="shareDesign('${code}','${d.cat}','${d.img}')" title="مشاركة">📤</button></div><div class="card-b"><span class="badge">${d.style}</span><div style="font-weight:900;margin-top:6px">تصميم ${d.cat}</div><div class="value">${d.val}</div><div class="code">كود: ${code} • ${d.cat}</div><div class="card-actions"><button class="cta" onclick="window.open('https://wa.me/201065871712?text='+encodeURIComponent('مرحبا Farida Decor - عايز استفسر عن ${code}'))">لحساب تكلفة وحدتك مجاناً تواصل معنا</button><button class="cta" style="background:#D4AF37;color:#140E08" onclick="toggleCompare('${code}')">قارن</button></div></div></div>`;
     }
   });
   if(favOnly && !h) h = '<div style="padding:20px;color:#fff">لسه مفيش مفضلة، دوس ❤️ على أي تصميم وهيظهر هنا</div>';
