@@ -74,9 +74,6 @@ footer h3{color:#D4AF37;margin-bottom:8px}footer div{color:#ddd;line-height:2;fo
 @media(max-width:768px){.calc{margin:0 10px 14px}.calc-grid{grid-template-columns:1fr 1fr}.calc-result{flex-direction:column;align-items:flex-start}}
 
 /* ===== 5 New Features ===== */
-.colorbar{display:flex;gap:8px;flex-wrap:wrap;padding:0 18px 12px}
-.colorbar button{padding:8px 14px;border-radius:999px;border:1px solid #3a2c1c;background:#2A1E12;color:#fff;cursor:pointer}
-.colorbar button.active{background:#D4AF37;color:#140E08}
 .top-actions{display:flex;gap:8px;flex-wrap:wrap;padding:0 18px 12px}
 .top-actions button{background:#D4AF37;color:#140E08;border:0;padding:10px 16px;border-radius:999px;font-weight:800;cursor:pointer}
 .top-actions button.ghost{background:#2A1E12;color:#fff;border:1px solid #3a2c1c}
@@ -103,23 +100,23 @@ footer h3{color:#D4AF37;margin-bottom:8px}footer div{color:#ddd;line-height:2;fo
     <a class="soc wa" href="https://wa.me/201065871712" target="_blank" title="واتساب"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.5 14.1c-.2.6-1.3 1.1-1.8 1.1-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4-4.9-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5l-.4.6-.5.5c-.2.2-.3.3-.2.6.1.3.7 1.7 1.9 2.6 1.4 1 2.2 1.2 2.5 1.3.3.1.5.1.7-.1l1-1.1c.2-.3.4-.2.7-.1l2.1 1c.3.2.5.3.6.4.1.2.1.8-.1 1.4z"/></svg><span>واتساب</span></a>
     <a class="soc fb" href="https://www.facebook.com/share/1H3A31Ah62/" target="_blank" title="فيسبوك"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.7c0-.9.3-1.6 1.6-1.6h1.7V4.2c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.4H7.5V14h2.7v8h3.3z"/></svg><span>فيسبوك</span></a>
     <a class="soc ig" href="#" target="_blank" title="انستجرام"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M4 8a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8z"/><circle cx="12" cy="12" r="3.6" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg><span>انستجرام</span></a>
-    <button class="btn">تصفح الكتالوج</button>
+    <button class="btn" onclick="openModal('advModal')">🔍 بحث متقدم</button>
   </div>
 </header>
-<section class="hero"><div><h1>FARIDA <span>DECOR</span></h1><div class="ruqaa">لمسة من الإبداع</div><p>جميع التصميمات المعروضة نماذج تصورية وأفكار إبداعية توضح إمكانياتنا في تصميم وتنفيذ الديكورات. يمكن تخصيص التصميمات وفقاً لمساحة العميل وذوقه واختياراته.</p><br><button class="btn">شاهد التصاميم</button> <button class="btn" style="background:#25D366;color:#fff">اسألنا على واتساب</button></div><div class="reels-box"><img id="reelsImg" src="" alt="تصميمات فريدة ديكور">
+<section class="hero"><div><h1>FARIDA <span>DECOR</span></h1><div class="ruqaa">لمسة من الإبداع</div><p>جميع التصميمات المعروضة نماذج تصورية وأفكار إبداعية توضح إمكانياتنا في تصميم وتنفيذ الديكورات. يمكن تخصيص التصميمات وفقاً لمساحة العميل وذوقه واختياراته.</p><br><button class="btn" onclick="showAllDesigns()">شاهد التصاميم</button> <button class="btn" style="background:#25D366;color:#fff">اسألنا على واتساب</button></div><div class="reels-box"><img id="reelsImg" src="" alt="تصميمات فريدة ديكور">
   <div class="reels-label">🔥 أحدث تصميماتنا</div>
   <div class="reels-progress"><span id="reelsBar"></span></div>
   <div class="reels-count"><span id="reelsNum">1</span> / <span id="reelsTotal">0</span></div>
 </div></section>
 <div class="favbar"><button id="favFilterBtn" onclick="toggleFavOnly()">❤️ مفضلتي (<span id="favCount">0</span>)</button><button id="sendFavBtn" onclick="sendFavs()">ابعت المفضلة على واتساب</button><span id="favHint" style="font-size:12px;color:#aaa">دوس ❤️ على أي تصميم يعجبك وهيتحفظ هنا</span></div>
 <div class="top-actions"><button onclick="openModal('quizModal')">🎯 اختبر ستايلك</button><button class="ghost" onclick="openModal('bookModal')">📅 احجز معاينة مجانية</button></div>
-<div class="colorbar" id="colorBar"><button class="active" data-color="الكل" onclick="setColor(this)">كل الألوان</button><button data-color="بيج" onclick="setColor(this)">بيج</button><button data-color="رمادي" onclick="setColor(this)">رمادي</button><button data-color="خشبي" onclick="setColor(this)">خشبي</button><button data-color="أبيض" onclick="setColor(this)">أبيض</button><button data-color="غامق" onclick="setColor(this)">غامق</button></div>
 <div class="comparebar" id="compareBar"><span id="compareText">اخترت تصميم (0/2)</span><button onclick="showCompare()">قارن دلوقتي</button><button onclick="clearCompare()">مسح</button></div>
 <div class="modal" id="lightModal"><div class="modal-box"><button class="close" onclick="closeModal('lightModal')">✕</button><img class="lightbox-img" id="lightImg" onclick="this.classList.toggle('zoom')"><div class="lb-nav"><button onclick="lightStep(-1)">اللي قبله</button><span id="lightInfo" style="color:#fff"></span><button onclick="lightStep(1)">اللي بعده</button></div></div></div>
 <div class="modal" id="compareModal"><div class="modal-box"><button class="close" onclick="closeModal('compareModal')">✕</button><h2 style="color:#D4AF37">مقارنة بين تصميمين</h2><div class="compare-grid" id="compareGrid"></div></div></div>
 <div class="modal" id="quizModal"><div class="modal-box"><button class="close" onclick="closeModal('quizModal')">✕</button><h2 style="color:#D4AF37">إيه ستايلك؟</h2><p style="color:#ccc;font-size:13px">جاوب 3 أسئلة وهنرشحلك 6 تصميمات</p><div class="quiz-q"><b>1. بتحب الألوان؟</b><br><button onclick="quizPick(this,'color','فاتح')">فاتحة</button><button onclick="quizPick(this,'color','غامق')">غامقة</button></div><div class="quiz-q"><b>2. بتحب الخامة؟</b><br><button onclick="quizPick(this,'mat','خشب')">بديل خشب</button><button onclick="quizPick(this,'mat','رخام')">بديل رخام</button><button onclick="quizPick(this,'mat','حجر')">بديل حجر</button></div><div class="quiz-q"><b>3. شقتك؟</b><br><button onclick="quizPick(this,'size','صغيرة')">صغيرة</button><button onclick="quizPick(this,'size','كبيرة')">كبيرة</button></div><button class="btn" onclick="runQuiz()">اعرض ترشيحاتي</button><div id="quizResult" style="margin-top:14px"></div></div></div>
 <div class="modal" id="bookModal"><div class="modal-box"><button class="close" onclick="closeModal('bookModal')">✕</button><h2 style="color:#D4AF37">احجز معاينة مجانية</h2><div class="book-form"><input id="bName" placeholder="اسمك"><input id="bPhone" placeholder="رقم الواتساب"><input id="bArea" placeholder="المنطقة - مثال: الإسكندرية، سموحة"><select id="bType"><option>غرفة نوم</option><option>مطبخ</option><option>وحدة TV</option><option>ريسبشن كامل</option><option>محل</option><option>شقة كاملة</option></select><input id="bDate" type="date"><button class="btn" style="background:#25D366;color:#fff" onclick="sendBooking()">ابعت الحجز على واتساب</button></div></div></div>
-<div class="pills"><button class="active">الكل</button><button>BedRooms</button><button>Kids Rooms</button><button>Living</button><button>TV Units</button><button>Walls</button><button>Shops</button><button>Kitchens</button><button>Partitions</button><button>Decors</button></div>
+<div class="modal" id="advModal"><div class="modal-box"><button class="close" onclick="closeModal('advModal')">✕</button><h2 style="color:#D4AF37">🔍 بحث متقدم</h2><p style="color:#ccc;font-size:13px">دوّر بالكود أو القسم أو اسم الستايل</p><div class="book-form"><input id="advCode" placeholder="دوّر بالكود - مثال: FD-001"><select id="advCat"><option value="All">كل الأقسام - All</option><option>BedRooms</option><option>Kids Rooms</option><option>Living</option><option>TV Units</option><option>Walls</option><option>Shops</option><option>Kitchens</option><option>Partitions</option><option>Decors</option></select><input id="advStyle" placeholder="دوّر بالستايل - مثال: نوم هادي"><button class="btn" onclick="runAdvancedSearch()">اعرض النتايج</button><button class="btn" style="background:#2A1E12;color:#fff;border:1px solid #3a2c1c" onclick="clearAdvancedSearch()">مسح البحث</button></div><div id="advResult" style="margin-top:14px;color:#ccc;font-size:13px"></div></div></div>
+<div class="pills"><button class="active">All</button><button>BedRooms</button><button>Kids Rooms</button><button>Living</button><button>TV Units</button><button>Walls</button><button>Shops</button><button>Kitchens</button><button>Partitions</button><button>Decors</button></div>
 <div class="grid" id="grid"></div>
 <footer><div><h3>الأقسام</h3><div>BedRooms • Kids Rooms • Living • TV Units • Walls • Shops • Kitchens • Partitions • Decors</div><div style="margin-top:12px;color:#D4AF37">© FARIDA DECOR — علامة تجارية من ذهب</div></div><div><h3>تواصل معنا</h3><div>لحساب تكلفة وحدتك مجاناً تواصل معنا</div><div>بإشراف وتنفيذ فريق من المهندسين المتخصصين</div></div></footer>
 <script>
@@ -291,7 +288,7 @@ function isFav(code){ return favs.includes(code); }
 function toggleFav(code, btn){
   if(favs.includes(code)) favs = favs.filter(c=>c!==code); else favs.push(code);
   localStorage.setItem('farida_favs', JSON.stringify(favs));
-  updateFavUI(); if(favOnly) render(document.querySelector('.pills button.active')?.textContent.trim()||"الكل");
+  updateFavUI(); if(favOnly) render(document.querySelector('.pills button.active')?.textContent.trim()||"All");
   else if(btn) btn.classList.toggle('on');
 }
 function updateFavUI(){
@@ -300,7 +297,7 @@ function updateFavUI(){
 }
 function toggleFavOnly(){
   favOnly = !favOnly; updateFavUI();
-  render(document.querySelector('.pills button.active')?.textContent.trim()||"الكل");
+  render(document.querySelector('.pills button.active')?.textContent.trim()||"All");
 }
 function shareDesign(code, cat, img){
   let text = 'عجبني التصميم ده من Farida Decor\nكود: '+code+' - '+cat+'\nشوفه هنا: '+location.href;
@@ -314,19 +311,15 @@ function sendFavs(){
   window.open('https://wa.me/201065871712?text='+encodeURIComponent(msg),'_blank');
 }
 
-let colorFilter='الكل';
 let compareList=[];
 let lightList=[], lightIndex=0;
 let currentVisible=[];
-const COLOR_MAP=['بيج','رمادي','خشبي','أبيض','غامق'];
-function getColor(d,i){ return COLOR_MAP[i % 5]; }
-function setColor(btn){ colorFilter=btn.dataset.color; document.querySelectorAll('#colorBar button').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); render(document.querySelector('.pills button.active')?.textContent.trim()||"الكل"); }
 function openModal(id){ document.getElementById(id).classList.add('open'); }
 function closeModal(id){ document.getElementById(id).classList.remove('open'); }
 document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{ if(e.target===m) m.classList.remove('open'); }));
 function toggleCompare(code){ if(compareList.includes(code)) compareList=compareList.filter(c=>c!==code); else { if(compareList.length>=2){ alert('اختار تصميمين بس'); return; } compareList.push(code); } updateCompareBar(); }
 function updateCompareBar(){ let bar=document.getElementById('compareBar'); document.getElementById('compareText').textContent='اخترت تصميم ('+compareList.length+'/2)'; bar.style.display=compareList.length?'flex':'none'; }
-function clearCompare(){ compareList=[]; updateCompareBar(); render(document.querySelector('.pills button.active')?.textContent.trim()||"الكل"); }
+function clearCompare(){ compareList=[]; updateCompareBar(); render(document.querySelector('.pills button.active')?.textContent.trim()||"All"); }
 function showCompare(){ if(compareList.length<2){ alert('اختار تصميمين'); return; } let items=compareList.map(code=>{ let idx=parseInt(code.split('-')[1])-1; return {code,d:designs[idx]}; }); document.getElementById('compareGrid').innerHTML=items.map(({code,d})=>`<div><img src="${d.img}"><h3 style="color:#fff;margin-top:8px">تصميم ${d.cat}</h3><div style="color:#D4AF37">${d.style}</div><div style="color:#ccc;font-size:13px">${d.val}</div><div style="color:#aaa;font-size:12px">كود: ${code}</div></div>`).join(''); openModal('compareModal'); }
 function openLightByCode(code){ lightList=currentVisible; lightIndex=lightList.findIndex(x=>x.code===code); if(lightIndex<0) lightIndex=0; showLight(); openModal('lightModal'); }
 function showLight(){ let item=lightList[lightIndex]; if(!item) return; document.getElementById('lightImg').src=item.d.img; document.getElementById('lightImg').classList.remove('zoom'); document.getElementById('lightInfo').textContent=(lightIndex+1)+' / '+lightList.length+' - '+item.code+' - '+item.d.cat; }
@@ -338,11 +331,10 @@ function sendBooking(){ let n=document.getElementById('bName').value||'', ph=doc
 function render(cat){
   let h=""; currentVisible=[];
   designs.forEach((d,i)=>{
-    if(cat==="الكل" || d.cat===cat){
+    if(cat==="All" || d.cat===cat){
       let n = String(i+1).padStart(3,'0');
       let code = 'FD-'+n;
       if(favOnly && !isFav(code)) return;
-      if(colorFilter!=='الكل' && getColor(d,i)!==colorFilter) return;
       currentVisible.push({d, code, idx:i});
       let imgUrl = d.img.includes('http') ? d.img : d.img.includes('.jpg') || d.img.includes('.png') ? d.img : 'https://images.unsplash.com/photo-'+d.img+'?w=800&q=80';
       h+=`<div class="card"><div class="card-top"><img src="${imgUrl}" style="cursor:zoom-in" onclick="openLightByCode('${code}')"><button class="favbtn ${isFav(code)?'on':''}" onclick="toggleFav('${code}',this)" title="أضف للمفضلة">${isFav(code)?'❤️':'🤍'}</button><button class="sharebtn" onclick="shareDesign('${code}','${d.cat}','${d.img}')" title="مشاركة">📤</button></div><div class="card-b"><span class="badge">${d.style}</span><div style="font-weight:900;margin-top:6px">تصميم ${d.cat}</div><div class="value">${d.val}</div><div class="code">كود: ${code} • ${d.cat}</div><div class="card-actions"><button class="cta" onclick="window.open('https://wa.me/201065871712?text='+encodeURIComponent('مرحبا Farida Decor - عايز استفسر عن ${code}'))">لحساب تكلفة وحدتك مجاناً تواصل معنا</button><button class="cta" style="background:#D4AF37;color:#140E08" onclick="toggleCompare('${code}')">قارن</button></div></div></div>`;
@@ -352,7 +344,37 @@ function render(cat){
   document.getElementById('grid').innerHTML=h;
   updateFavUI();
 }
-render("الكل");
+
+function showAllDesigns(){
+  favOnly=false; document.getElementById('favFilterBtn')?.classList.remove('active');
+  document.querySelectorAll('.pills button').forEach(x=>x.classList.remove('active'));
+  let allBtn=document.querySelector('.pills button'); if(allBtn) allBtn.classList.add('active');
+  render("All");
+  document.getElementById('grid')?.scrollIntoView({behavior:'smooth'});
+}
+function runAdvancedSearch(){
+  let code=(document.getElementById('advCode').value||'').trim().toUpperCase();
+  let cat=document.getElementById('advCat').value||'All';
+  let style=(document.getElementById('advStyle').value||'').trim();
+  // لو بيدور بالكود افتح التصميم على طول في الـ Lightbox
+  if(code){
+    let idx=designs.findIndex((d,i)=>('FD-'+String(i+1).padStart(3,'0'))===code);
+    if(idx>=0){ closeModal('advModal'); currentVisible=designs.map((d,i)=>({d,code:'FD-'+String(i+1).padStart(3,'0'),idx:i})); lightList=currentVisible; lightIndex=idx; showLight(); openModal('lightModal'); return; }
+    document.getElementById('advResult').innerHTML='مفيش تصميم بالكود ده، جرب كود تاني'; return;
+  }
+  // فلترة بالقسم + الستايل
+  document.querySelectorAll('.pills button').forEach(x=>{ x.classList.toggle('active', x.textContent.trim()===cat); });
+  let filtered=designs.filter(d=>(cat==="All"||d.cat===cat)&&(!style||d.style.includes(style)||d.val.includes(style)));
+  if(!filtered.length){ document.getElementById('advResult').innerHTML='مفيش نتايج مطابقة، جرب توسّع البحث'; return; }
+  // اعرض النتايج في الجريد
+  let h=""; currentVisible=[];
+  filtered.forEach(d=>{ let i=designs.indexOf(d); let c='FD-'+String(i+1).padStart(3,'0'); currentVisible.push({d,code:c,idx:i}); let imgUrl=d.img.includes('http')?d.img:(d.img.includes('.jpg')||d.img.includes('.png')?d.img:'https://images.unsplash.com/photo-'+d.img+'?w=800&q=80'); h+=`<div class="card"><div class="card-top"><img src="${imgUrl}" style="cursor:zoom-in" onclick="openLightByCode('${c}')"><button class="favbtn ${isFav(c)?'on':''}" onclick="toggleFav('${c}',this)">${isFav(c)?'❤️':'🤍'}</button><button class="sharebtn" onclick="shareDesign('${c}','${d.cat}','${d.img}')">📤</button></div><div class="card-b"><span class="badge">${d.style}</span><div style="font-weight:900;margin-top:6px">تصميم ${d.cat}</div><div class="value">${d.val}</div><div class="code">كود: ${c} • ${d.cat}</div><div class="card-actions"><button class="cta" onclick="window.open('https://wa.me/201065871712?text='+encodeURIComponent('مرحبا Farida Decor - عايز استفسر عن ${c}'))">لحساب تكلفة وحدتك مجاناً تواصل معنا</button><button class="cta" style="background:#D4AF37;color:#140E08" onclick="toggleCompare('${c}')">قارن</button></div></div></div>`; });
+  document.getElementById('grid').innerHTML=h; updateFavUI();
+  document.getElementById('advResult').innerHTML='لقيت <b style="color:#D4AF37">'+filtered.length+'</b> تصميم';
+  closeModal('advModal'); document.getElementById('grid').scrollIntoView({behavior:'smooth'});
+}
+function clearAdvancedSearch(){ document.getElementById('advCode').value=''; document.getElementById('advStyle').value=''; document.getElementById('advCat').value='All'; document.getElementById('advResult').innerHTML=''; showAllDesigns(); }
+render("All");
 document.querySelectorAll('.pills button').forEach(b=>{
   b.onclick=()=>{
     document.querySelectorAll('.pills button').forEach(x=>x.classList.remove('active'));
